@@ -1,0 +1,10 @@
+{
+    "name": "Flutter Ext",
+    "version": "1.0.0",
+    "description": "This is a flutter chrome extension",
+    "action": {
+    "default_popup": "index.html",
+    "default_icon": "/icons/Icon-192.png"
+    },
+    "manifest_version": 3
+}

@@ -55,8 +55,7 @@ class SubWalletCreateView extends StatelessWidget {
                   hintText: 'SubWallet Password'),
             ),
             CoreTextField(
-                controller: controller.transacCont,
-                hintText: 'Balance'),
+                controller: controller.transacCont, hintText: 'Balance'),
             SizedBox(
               height: 50,
             ),
@@ -69,7 +68,7 @@ class SubWalletCreateView extends StatelessWidget {
                   dynamic requestObject = {
                     "user_name": controller.usernameCont.text,
                     "password": controller.passCont.text,
-                    "max_val": int.parse(controller.transacCont.text),
+                    "balance": int.parse(controller.transacCont.text),
                     "sub_wallet_name": controller.walletnameCont.text,
                     "relation_obj": {
                       "user_id": user_id,

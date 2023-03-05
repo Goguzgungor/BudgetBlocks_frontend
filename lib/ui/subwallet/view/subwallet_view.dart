@@ -20,6 +20,7 @@ class SubWalletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    int lamport_to_sol = 1000000000;
     final controller = Get.find<SubWalletController>();
     getDatas() async {
       LocalStorage localStorage = LocalStorage();
@@ -66,12 +67,14 @@ class SubWalletView extends StatelessWidget {
                               print(snapshot.data);
                               String balance =
                                   snapshot.data?["data"]['balance'];
-
+                              String solBalance =
+                                  (int.parse(balance) / lamport_to_sol)
+                                      .toString();
                               return Column(
                                 children: [
                                   Center(
                                     child: Text(
-                                      '${balance} SOL',
+                                      '${solBalance} SOL',
                                       style: headline1.copyWith(fontSize: 48),
                                     ),
                                   ),

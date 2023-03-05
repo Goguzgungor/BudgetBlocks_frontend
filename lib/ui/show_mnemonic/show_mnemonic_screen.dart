@@ -8,12 +8,15 @@ import 'package:solsafe/ui/show_mnemonic/controller/show_mnemonic_controller.dar
 import 'package:solsafe/ui/show_mnemonic/view/show_mnemonic_view.dart';
 
 class ShowMnemonicScreen extends StatelessWidget {
-  const ShowMnemonicScreen({super.key});
+  final int user_id;
+  const ShowMnemonicScreen({super.key, required this.user_id});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
         init: ShowMnemonicController(),
-        builder: (_) => const ShowMnemonicView());
+        builder: (_) =>  ShowMnemonicView(
+              user_id: user_id,
+            ));
   }
 }

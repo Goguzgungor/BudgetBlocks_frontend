@@ -1,16 +1,15 @@
-const String appName = 'PaketlePos';
 
-const String appleMarketUrl = 'https://www.apple.com/tr/app-store/';
-
-const String googleMarketUrl =
-    'https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox&gl=TR';
 
 /// Türk Para Birimi
 const String priceUnit = '₺';
 
+const String users_id = 'user_id';
+
+const String relation_id = 'relation_id';
 /// Dakika
 const String minuteUnite = 'dk';
 
+const int lamport = 1000000000;
 /// Tasarım Genişlik
 const double designWith = 375;
 

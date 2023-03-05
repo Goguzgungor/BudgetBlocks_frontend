@@ -12,7 +12,7 @@ class ShowMnemonicController extends GetxController {
     return await localStorage.getId('username') ?? '';
   }
 
-  savename() async {
-    localStorage.save('username', 'midex');
+  Future<String?> saveLocal(String key, String value) async {
+    await localStorage.save(key, value);
   }
 }

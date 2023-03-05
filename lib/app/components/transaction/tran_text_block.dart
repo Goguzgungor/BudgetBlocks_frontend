@@ -6,7 +6,8 @@ import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
 import 'package:solsafe/app/theme/text_style.dart';
 
 class TranTextBlock extends StatelessWidget {
-  const TranTextBlock({super.key});
+  final String text;
+  const TranTextBlock({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +16,16 @@ class TranTextBlock extends StatelessWidget {
         SizedBox(
           width: 20.horizontalScale,
         ),
-        SvgPicture.asset('assets/wallet_page/arrow_icon.svg'),
+        InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: SvgPicture.asset('assets/wallet_page/arrow_icon.svg')),
         SizedBox(
           width: 20.horizontalScale,
         ),
         Text(
-          'You are sending',
+          text,
           style: amanountSolStyle,
         ),
       ],

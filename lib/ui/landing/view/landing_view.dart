@@ -6,8 +6,11 @@ import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
+import 'package:solsafe/ui/create_sub_wallet/create_sub_wallet_screen.dart';
+import 'package:solsafe/ui/create_wallet/create_wallet_screen.dart';
 import 'package:solsafe/ui/import_wallet/screen/import_wallet_screen.dart';
 import 'package:solsafe/ui/landing/controller/lading_controller.dart';
+import 'package:solsafe/ui/show_mnemonic/show_mnemonic_screen.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({super.key});
@@ -61,7 +64,16 @@ BLOCKS''',
                   ),
                   Column(
                     children: [
-                      RedButton(text: 'Create New Wallet'),
+                      InkWell(
+                          onTap: () async {
+                            String user_id = await controller.getId('user_id');
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CreateWalletScreen(),
+                              ),
+                            );
+                          },
+                          child: RedButton(text: 'Create New Wallet')),
                       SizedBox(
                         height: 20.verticalScale,
                       ),

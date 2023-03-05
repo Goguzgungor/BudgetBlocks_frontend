@@ -57,7 +57,7 @@ class ImportWalletView extends StatelessWidget {
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: TextField(
-                                          controller: controller.controller,
+                                          controller: controller.controller1,
                                           decoration: InputDecoration(
                                             border: InputBorder.none,
                                             contentPadding: EdgeInsets.only(

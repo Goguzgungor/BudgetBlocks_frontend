@@ -1,41 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/headline_text.dart';
 import 'package:solsafe/app/components/create_wallet/create_wallet_grid.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
+import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/memory/window_local.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
-import 'package:solsafe/ui/show_mnemonic/controller/show_mnemonic_controller.dart';
 
-class ShowMnemonicView extends StatelessWidget {
-  final int user_id;
-  const ShowMnemonicView({super.key, required this.user_id});
+class SubWalletListView extends StatelessWidget {
+  const SubWalletListView({super.key});
+
+  Future<Map<String, dynamic>> getList() async {
+    LocalStorage localStorage = LocalStorage();
+    int user_id = int.parse(await localStorage.getId(users_id) ?? '-1');
+    return await HttpManager.instance
+        .getJsonRequest('/user/subwallet/list/${user_id}');
+  }
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig.init(context);
-
-    final controller = Get.find<ShowMnemonicController>();
-
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "Create New Wallet"),
+        appBar: CoreAppBarr(context, text: "Subwallet List"),
         backgroundColor: AppColor.background,
         body: SizedBox(
           width: 390..horizontalScale,
           height: 890.verticalScale,
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            HeadLineText(text: 'Recovery Phrase'),
+            TranTextBlock(text: 'Subwallets'),
             FutureBuilder<Map<String, dynamic>>(
-              future: HttpManager.instance
-                  .getJsonRequest('/user/create/userwallet/${user_id}'),
+              future: getList(),
               builder: (
                 BuildContext context,
                 AsyncSnapshot<Map<String, dynamic>> snapshot,
@@ -52,49 +50,36 @@ class ShowMnemonicView extends StatelessWidget {
                     );
                   } else if (snapshot.hasData) {
                     print(snapshot.data);
-                    int mainwalletId = snapshot.data?["data"]['mainwallet_id'];
-                    List mnemonicList = snapshot.data?["data"]["mnemonic"];
+                    List subWalletList = snapshot.data?["data"];
+                    print(subWalletList);
                     return Column(
                       children: [
                         SizedBox(
                           width: 220.horizontalScale,
                           height: 310.verticalScale,
                           child: Center(
-                            child: CreateWalletGrid(
-                              mnemonicList: mnemonicList,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Checkbox(
-                                    value: true,
-                                    onChanged: (value) {},
-                                  ),
-                                  Text(
-                                    '''I have saved my recovery phrase in a
-secure place''',
+                            child: ListView.builder(
+                              itemCount: subWalletList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListTile(
+                                  leading: SvgPicture.asset(
+                                      'assets/wallet_page/sol_logo.svg'),
+                                  title: Text(
+                                    subWalletList[index]["sub_wallet_name"],
                                     style: middleBarstyle.copyWith(
                                         fontSize: 16.horizontalScale,
                                         color: AppColor.white),
                                   ),
-                                ]),
-                            InkWell(
-                                onTap: () async {
-                                  await controller.saveLocal(
-                                      'mainwallet_id', mainwalletId.toString());
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => MainWalletScreen(
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: RedButton(text: 'Approve'))
-                          ],
+                                  subtitle: Text(
+                                    subWalletList[index]["public_key"],
+                                    style: middleBarstyle.copyWith(
+                                        fontSize: 8.horizontalScale,
+                                        color: AppColor.white),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     );

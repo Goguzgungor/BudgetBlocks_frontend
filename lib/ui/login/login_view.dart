@@ -1,8 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:solsafe/app/components/core/core_app_barr.dart';
 import 'package:solsafe/app/components/core/core_text_field.dart';
@@ -11,27 +7,24 @@ import 'package:solsafe/app/components/core/headline_text.dart';
 import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/auth/controller/auth_controller.dart';
-import 'package:solsafe/ui/home/controller/home_controller.dart';
-import 'package:solsafe/ui/import_wallet/controller/import_wallet_controller.dart';
+import 'package:solsafe/ui/auth/screen/auth_screen.dart';
 import 'package:solsafe/ui/landing/landing_screen.dart';
-import 'package:solsafe/ui/login/screen/login_screen.dart';
+import 'package:solsafe/ui/login/controller/login_controller.dart';
+import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
+import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
 
-class AuthView extends StatelessWidget {
-  const AuthView({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    final controller = Get.find<AuthController>();
+    final controller = Get.find<LoginController>();
     return Scaffold(
-      appBar: CoreAppBarr(context, text: 'Create Wallet'),
+      appBar: CoreAppBarr(context, text: 'Login Wallet'),
       backgroundColor: AppColor.background,
       body: SizedBox(
         width: 390.horizontalScale,
@@ -40,7 +33,7 @@ class AuthView extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                HeadLineText(text: 'Create a user'),
+                HeadLineText(text: 'Login'),
                 Column(
                   children: [
                     CoreTextField(
@@ -52,50 +45,63 @@ class AuthView extends StatelessWidget {
                     ),
                     CoreTextField(
                       controller: controller.pas_controller,
-                      hintText: 'Set password',
+                      hintText: 'Password',
                     ),
                     SizedBox(
                       height: 17.verticalScale,
-                    ),
-                    CoreTextField(
-                      controller: controller.re_pas_controller,
-                      hintText: 'Repeat password',
-                    ),
-                    SizedBox(
-                      height: 20.verticalScale,
                     ),
                     InkWell(
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
+                              builder: (context) => const AuthScreen(),
                             ),
                           );
                         },
-                        child: DarkCoreText(text: 'or Login'))
+                        child: DarkCoreText(text: 'or Create Account'))
                   ],
                 ),
                 InkWell(
                     onTap: () async {
                       Map<String, dynamic> userData = {
                         "user_name": controller.username_controller.text,
-                        "e_mail": "example@example.com",
-                        "password": controller.re_pas_controller.text
+                        "password": controller.pas_controller.text
                       };
                       Map<String, dynamic> resp = await HttpManager.instance
-                          .postJsonRequest('/user/create', userData);
+                          .postJsonRequest('/user/login', userData);
                       print(resp);
+                      String user_id = resp['data']['data']['id'].toString();
 
-                      String user_id = resp['data']['id'].toString();
-                      print(user_id);
                       await controller.saveLocal(users_id, user_id);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const LandingScreen(),
-                        ),
-                      );
+                      if (resp['data']['type'] == 'mainwallet') {
+                        String mainwallet_id = resp['data']['main_wallet_id']
+                                ['mainwallet_id']
+                            .toString();
+                        await controller.saveLocal(
+                            'mainwallet_id', mainwallet_id);
+                        await controller.saveLocal('wallet_type', 'mainwallet');
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const MainWalletScreen(),
+                          ),
+                        );
+                      }
+                      if (resp['data']['type'] == 'subwallet') {
+                        int user_id = resp['data']['data']['id'];
+                        print(user_id.toString());
+                        //user_id
+                        //
+                        await controller.saveLocal(
+                            'user_id', user_id.toString());
+                        await controller.saveLocal('wallet_type', 'subwallet');
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SubWalletScreen(),
+                          ),
+                        );
+                      }
                     },
-                    child: const RedButton(text: 'Create')),
+                    child: const RedButton(text: 'Login')),
               ]),
         ),
       ),

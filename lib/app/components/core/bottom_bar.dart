@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:solsafe/app/components/core/bottombar_icon.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
 import 'package:solsafe/app/theme/colors.dart';
+import 'package:solsafe/ui/landing/landing_screen.dart';
+import 'package:solsafe/ui/settings/settings_screen.dart';
 
 class CustomBottomBar extends StatelessWidget {
   const CustomBottomBar({super.key});
@@ -29,7 +31,15 @@ class CustomBottomBar extends StatelessWidget {
                 children: [
                   BottomBarrIcon(),
                   Image.asset('assets/wallet_page/flash_icon.png'),
-                  Image.asset('assets/wallet_page/wheel_icon.png')
+                  InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SettingsScreen(),
+                          ),
+                        );
+                      },
+                      child: Image.asset('assets/wallet_page/wheel_icon.png'))
                 ]),
           ),
         ],

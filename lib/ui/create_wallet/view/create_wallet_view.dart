@@ -10,6 +10,8 @@ import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/create_wallet/controller/create_wallet_controller.dart';
 import 'package:solsafe/ui/show_mnemonic/show_mnemonic_screen.dart';
 
+import '../../../app/constants/app_constant.dart';
+
 class CreateWalletView extends StatelessWidget {
   const CreateWalletView({super.key});
 
@@ -52,10 +54,15 @@ have access.
             style: headline1.copyWith(fontSize: 16),
           ),
           InkWell(
-              onTap: () {
+              onTap: () async {
+                int user_id = int.parse(await controller.getName(users_id) ?? '1');
+                print('PRİNTERRRRRRRRRRR');
+                print(user_id);
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const ShowMnemonicScreen(),
+                    builder: (context) => ShowMnemonicScreen(
+                      user_id: user_id,
+                    ),
                   ),
                 );
               },

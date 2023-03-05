@@ -13,9 +13,13 @@ import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
 import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
+import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
+import 'package:solsafe/ui/check/check.dart';
+import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
 import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
 
 class TransactionView extends StatelessWidget {
@@ -27,7 +31,7 @@ class TransactionView extends StatelessWidget {
 
     final controller = Get.find<TransactionController>();
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "Create New Wallet"),
+        appBar: CoreAppBarr(context, text: "Transaction"),
         backgroundColor: AppColor.background,
         bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(
@@ -46,7 +50,7 @@ class TransactionView extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            const TranTextBlock(),
+                            const TranTextBlock(text: 'You are sending'),
                             Padding(
                               padding:
                                   EdgeInsets.only(right: 42.horizontalScale),
@@ -82,7 +86,7 @@ class TransactionView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DarkCoreText(text: 'Available: 10.05 SOL'),
+                        DarkCoreText(text: 'Available: 10.0xw5 SOL'),
                         SizedBox(
                           width: 50.horizontalScale,
                         ),
@@ -101,7 +105,59 @@ class TransactionView extends StatelessWidget {
                         SizedBox(
                           width: 15.horizontalScale,
                         ),
-                        RedButtonSmall(text: 'Next'),
+                        InkWell(
+                            onTap: () async {
+                              LocalStorage localStorage = LocalStorage();
+                              String walletType =
+                                  await localStorage.getId('wallet_type') ??
+                                      '-1';
+                              if (walletType == 'mainwallet') {
+                                int mainwallet_id = int.parse(
+                                    await localStorage.getId('mainwallet_id') ??
+                                        '');
+                                dynamic requestObj = {
+                                  "reciver_public_key":
+                                      controller.reciverText.text,
+                                  "balance": controller.amaountCont.text,
+                                  "mainwallet_id": mainwallet_id
+                                };
+
+                                Map<String, dynamic> signature =
+                                    await HttpManager.instance.postJsonRequest(
+                                        '/user/mainwallet/transaction/send',
+                                        requestObj);
+
+                                print(signature['data'].toString());
+                                
+                                print('DONEEEEEEEE');
+                                 Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                         CheckView(text: signature['data']['transaction_id'].toString())));
+                              }
+
+                              if (walletType == 'subwallet') {
+                                int user_id = int.parse(
+                                    await localStorage.getId('user_id') ??
+                                        '-1');
+                                dynamic requestObj = {
+                                  "reciver_public_key":
+                                      controller.reciverText.text,
+                                  "balance": controller.amaountCont.text,
+                                  "user_id": user_id
+                                };
+
+                                Map<String, dynamic> signature =
+                                    await HttpManager.instance.postJsonRequest(
+                                        '/user/create/pendingtransaction',
+                                        requestObj);
+
+                                print(signature['data'].toString());
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SubWalletScreen()));
+                              }
+                            },
+                            child: RedButtonSmall(text: 'Send')),
                       ],
                     ),
                   ],

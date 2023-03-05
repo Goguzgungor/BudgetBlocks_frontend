@@ -5,7 +5,7 @@ import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/models/auth/auth_models.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 
-class AuthController extends GetxController {
+class LoginController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   BuildContext get context => scaffoldKey.currentContext!;
 

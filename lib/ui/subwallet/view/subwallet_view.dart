@@ -11,27 +11,26 @@ import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/main_wallet/controller/main_wallet_controller.dart';
+import 'package:solsafe/ui/subwallet/controller/subwallet_controller.dart';
 import 'package:solsafe/ui/transaction/transaction_screen.dart';
 
-class MainWalletView extends StatelessWidget {
-  const MainWalletView({super.key});
+class SubWalletView extends StatelessWidget {
+  const SubWalletView({super.key});
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    final controller = Get.find<MainWalletController>();
+    final controller = Get.find<SubWalletController>();
     getDatas() async {
       LocalStorage localStorage = LocalStorage();
-      int mainwalletId =
-          int.parse(await localStorage.getId('mainwallet_id') ?? '-1');
+      int user_id = int.parse(await localStorage.getId('user_id') ?? '-1');
       return await HttpManager.instance
-          .getJsonRequest('/user/balance/${mainwalletId}');
+          .getJsonRequest('/user/balance/subwallet/${user_id}');
     }
 
     return Scaffold(
       appBar: CoreAppBarr(context, text: 'Main Wallet'),
       backgroundColor: AppColor.background,
-      bottomNavigationBar: CustomBottomBar(),
       body: Center(
         child: SizedBox(
             width: 390.horizontalScale,
@@ -65,7 +64,7 @@ class MainWalletView extends StatelessWidget {
                               );
                             } else if (snapshot.hasData) {
                               print(snapshot.data);
-                              double balance =
+                              String balance =
                                   snapshot.data?["data"]['balance'];
 
                               return Column(

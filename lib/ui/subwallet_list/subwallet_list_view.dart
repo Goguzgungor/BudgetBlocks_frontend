@@ -7,7 +7,6 @@ import 'package:solsafe/app/components/create_wallet/create_wallet_grid.dart';
 import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
@@ -16,10 +15,10 @@ class SubWalletListView extends StatelessWidget {
   const SubWalletListView({super.key});
 
   Future<Map<String, dynamic>> getList() async {
-    LocalStorage localStorage = LocalStorage();
-    int user_id = int.parse(await localStorage.getId(users_id) ?? '-1');
-    return await HttpManager.instance
-        .getJsonRequest('/user/subwallet/list/${user_id}');
+    // int user_id = int.parse(await localStorage.getId(users_id) ?? '-1');
+    // return await HttpManager.instance
+    //     .getJsonRequest('/user/subwallet/list/${user_id}');
+    return {};
   }
 
   @override

@@ -5,7 +5,6 @@ import 'package:solsafe/app/components/core/core_app_barr.dart';
 import 'package:solsafe/app/components/core/dark_core_text.dart';
 import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -21,11 +20,11 @@ class MainWalletView extends StatelessWidget {
     SizeConfig.init(context);
     final controller = Get.find<MainWalletController>();
     getDatas() async {
-      LocalStorage localStorage = LocalStorage();
-      int mainwalletId =
-          int.parse(await localStorage.getId('mainwallet_id') ?? '-1');
+      // LocalStorage localStorage = LocalStorage();
+      // int mainwalletId =
+      //     int.parse(await localStorage.getId('mainwallet_id') ?? '-1');
       return await HttpManager.instance
-          .getJsonRequest('/user/balance/${mainwalletId}');
+          .getJsonRequest('/user/balance/${"mainwalletId"}');
     }
 
     return Scaffold(

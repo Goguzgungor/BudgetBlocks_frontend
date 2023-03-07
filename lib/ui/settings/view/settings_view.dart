@@ -8,7 +8,6 @@ import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
 import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';

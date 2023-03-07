@@ -9,7 +9,6 @@ import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
 import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -61,27 +60,27 @@ class SubWalletCreateView extends StatelessWidget {
             ),
             InkWell(
                 onTap: () async {
-                  int user_id =
-                      int.parse(await controller.getLocal(users_id) ?? '-1');
-                  int mainwalletId = int.parse(
-                      await controller.getLocal("mainwallet_id") ?? '-1');
-                  dynamic requestObject = {
-                    "user_name": controller.usernameCont.text,
-                    "password": controller.passCont.text,
-                    "balance": int.parse(controller.transacCont.text),
-                    "sub_wallet_name": controller.walletnameCont.text,
-                    "relation_obj": {
-                      "user_id": user_id,
-                      "mainwallet_id": mainwalletId
-                    }
-                  };
-                  await HttpManager.instance
-                      .postJsonRequest('/user/create/subwallet', requestObject);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => MainWalletScreen(),
-                    ),
-                  );
+                  // int user_id =
+                  //     int.parse(await controller.getLocal(users_id) ?? '-1');
+                  // int mainwalletId = int.parse(
+                  //     await controller.getLocal("mainwallet_id") ?? '-1');
+                  // dynamic requestObject = {
+                  //   "user_name": controller.usernameCont.text,
+                  //   "password": controller.passCont.text,
+                  //   "balance": int.parse(controller.transacCont.text),
+                  //   "sub_wallet_name": controller.walletnameCont.text,
+                  //   "relation_obj": {
+                  //     "user_id": user_id,
+                  //     "mainwallet_id": mainwalletId
+                  //   }
+                  // };
+                  // await HttpManager.instance
+                  //     .postJsonRequest('/user/create/subwallet', requestObject);
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => MainWalletScreen(),
+                  //   ),
+                  // );
                 },
                 child: RedButton(text: 'Create'))
           ]),

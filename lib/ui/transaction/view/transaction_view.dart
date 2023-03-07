@@ -13,7 +13,6 @@ import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
 import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -107,55 +106,55 @@ class TransactionView extends StatelessWidget {
                         ),
                         InkWell(
                             onTap: () async {
-                              LocalStorage localStorage = LocalStorage();
-                              String walletType =
-                                  await localStorage.getId('wallet_type') ??
-                                      '-1';
-                              if (walletType == 'mainwallet') {
-                                int mainwallet_id = int.parse(
-                                    await localStorage.getId('mainwallet_id') ??
-                                        '');
-                                dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
-                                  "mainwallet_id": mainwallet_id
-                                };
+                              // LocalStorage localStorage = LocalStorage();
+                              // String walletType =
+                              //     await localStorage.getId('wallet_type') ??
+                              //         '-1';
+                              // if (walletType == 'mainwallet') {
+                              //   int mainwallet_id = int.parse(
+                              //       await localStorage.getId('mainwallet_id') ??
+                              //           '');
+                              //   dynamic requestObj = {
+                              //     "reciver_public_key":
+                              //         controller.reciverText.text,
+                              //     "balance": controller.amaountCont.text,
+                              //     "mainwallet_id": mainwallet_id
+                              //   };
 
-                                Map<String, dynamic> signature =
-                                    await HttpManager.instance.postJsonRequest(
-                                        '/user/mainwallet/transaction/send',
-                                        requestObj);
+                              //   Map<String, dynamic> signature =
+                              //       await HttpManager.instance.postJsonRequest(
+                              //           '/user/mainwallet/transaction/send',
+                              //           requestObj);
 
-                                print(signature['data'].toString());
+                              //   print(signature['data'].toString());
                                 
-                                print('DONEEEEEEEE');
-                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                         CheckView(text: signature['data']['transaction_id'].toString())));
-                              }
+                              //   print('DONEEEEEEEE');
+                              //    Navigator.of(context).push(MaterialPageRoute(
+                              //       builder: (context) =>
+                              //            CheckView(text: signature['data']['transaction_id'].toString())));
+                              // }
 
-                              if (walletType == 'subwallet') {
-                                int user_id = int.parse(
-                                    await localStorage.getId('user_id') ??
-                                        '-1');
-                                dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
-                                  "user_id": user_id
-                                };
+                              // if (walletType == 'subwallet') {
+                              //   int user_id = int.parse(
+                              //       await localStorage.getId('user_id') ??
+                              //           '-1');
+                              //   dynamic requestObj = {
+                              //     "reciver_public_key":
+                              //         controller.reciverText.text,
+                              //     "balance": controller.amaountCont.text,
+                              //     "user_id": user_id
+                              //   };
 
-                                Map<String, dynamic> signature =
-                                    await HttpManager.instance.postJsonRequest(
-                                        '/user/create/pendingtransaction',
-                                        requestObj);
+                              //   Map<String, dynamic> signature =
+                              //       await HttpManager.instance.postJsonRequest(
+                              //           '/user/create/pendingtransaction',
+                              //           requestObj);
 
-                                print(signature['data'].toString());
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SubWalletScreen()));
-                              }
+                              //   print(signature['data'].toString());
+                              //   Navigator.of(context).push(MaterialPageRoute(
+                              //       builder: (context) =>
+                              //           const SubWalletScreen()));
+                              // }
                             },
                             child: RedButtonSmall(text: 'Send')),
                       ],

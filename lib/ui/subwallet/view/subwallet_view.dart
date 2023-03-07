@@ -5,7 +5,6 @@ import 'package:solsafe/app/components/core/core_app_barr.dart';
 import 'package:solsafe/app/components/core/dark_core_text.dart';
 import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/window_local.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -22,11 +21,12 @@ class SubWalletView extends StatelessWidget {
     SizeConfig.init(context);
     int lamport_to_sol = 1000000000;
     final controller = Get.find<SubWalletController>();
-    getDatas() async {
-      LocalStorage localStorage = LocalStorage();
-      int user_id = int.parse(await localStorage.getId('user_id') ?? '-1');
-      return await HttpManager.instance
-          .getJsonRequest('/user/balance/subwallet/${user_id}');
+    Future<Map<String,dynamic>>getDatas() async {
+      // LocalStorage localStorage = LocalStorage();
+      // int user_id = int.parse(await localStorage.getId('user_id') ?? '-1');
+      // return await HttpManager.instance
+      //     .getJsonRequest('/user/balance/subwallet/${user_id}');
+      return {};
     }
 
     return Scaffold(

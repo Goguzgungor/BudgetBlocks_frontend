@@ -22,7 +22,7 @@ class CoreAppBarr extends BaseStateless implements PreferredSizeWidget {
     return Column(
       children: [
         SizedBox(
-          height: 20.horizontalScale,
+          height: 30.horizontalScale,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,5 +52,5 @@ class CoreAppBarr extends BaseStateless implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(dynamicHeight(context, 94.horizontalScale));
+      Size.fromHeight(dynamicHeight(context, 90.horizontalScale));
 }

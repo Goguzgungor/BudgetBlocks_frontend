@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:solsafe/app/components/core/core_app_barr.dart';
 import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -55,8 +56,7 @@ have access.
           ),
           InkWell(
               onTap: () async {
-                int user_id = int.parse(await controller.getName(users_id) ?? '1');
-                print('PRİNTERRRRRRRRRRR');
+                int user_id = controller.getLocal(HiveBoxes.USER, users_id);;
                 print(user_id);
                 Navigator.of(context).push(
                   MaterialPageRoute(

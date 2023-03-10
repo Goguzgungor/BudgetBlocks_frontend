@@ -7,6 +7,8 @@ import 'package:solsafe/app/components/create_wallet/create_wallet_grid.dart';
 import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
+import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
@@ -15,10 +17,9 @@ class SubWalletListView extends StatelessWidget {
   const SubWalletListView({super.key});
 
   Future<Map<String, dynamic>> getList() async {
-    // int user_id = int.parse(await localStorage.getId(users_id) ?? '-1');
-    // return await HttpManager.instance
-    //     .getJsonRequest('/user/subwallet/list/${user_id}');
-    return {};
+    int user_id = HiveManager.instance.getMapFromBox(HiveBoxes.USER, users_id);
+    return await HttpManager.instance
+        .getJsonRequest('/user/subwallet/list/${user_id}');
   }
 
   @override
@@ -55,7 +56,7 @@ class SubWalletListView extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 220.horizontalScale,
-                          height: 310.verticalScale,
+                          height: 630.verticalScale,
                           child: Center(
                             child: ListView.builder(
                               itemCount: subWalletList.length,

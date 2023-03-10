@@ -28,7 +28,7 @@ class CoreTextField extends StatelessWidget {
               controller: controller,
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(left: 15, bottom: 15),
+                  contentPadding: EdgeInsets.only(left: 15),
                   fillColor: Colors.white,
                   hintText: hintText,
                   hintStyle: textFieldStyle),

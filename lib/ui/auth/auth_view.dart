@@ -84,11 +84,13 @@ class AuthView extends StatelessWidget {
                       };
                       Map<String, dynamic> resp = await HttpManager.instance
                           .postJsonRequest('/user/create', userData);
-                      print(resp);
+                      int user_id = resp['data']['id'];
+                      HiveManager.instance
+                          .addMapToBox(HiveBoxes.USER, 'user_id', user_id);
+                      int user1 = HiveManager.instance
+                          .getMapFromBox(HiveBoxes.USER, 'user_id');
 
-                      String user_id = resp['data']['id'].toString();
-                      print(user_id);
-                      await controller.saveLocal(users_id, user_id);
+                      print(user1);
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const LandingScreen(),

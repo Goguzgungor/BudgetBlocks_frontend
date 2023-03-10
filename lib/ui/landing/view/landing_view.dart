@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
+import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
@@ -65,8 +67,8 @@ BLOCKS''',
                   Column(
                     children: [
                       InkWell(
-                          onTap: () async {
-                            String user_id = await controller.getId('user_id');
+                          onTap: ()  {
+                            int user_id =  HiveManager.instance.getMapFromBox(HiveBoxes.USER, 'user_id');
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => CreateWalletScreen(),

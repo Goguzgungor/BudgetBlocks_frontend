@@ -4,7 +4,10 @@ import 'package:solsafe/app/components/core/bottom_bar.dart';
 import 'package:solsafe/app/components/core/core_app_barr.dart';
 import 'package:solsafe/app/components/core/dark_core_text.dart';
 import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
+import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
+import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -21,11 +24,11 @@ class SubWalletView extends StatelessWidget {
     SizeConfig.init(context);
     int lamport_to_sol = 1000000000;
     final controller = Get.find<SubWalletController>();
-    Future<Map<String,dynamic>>getDatas() async {
-      // LocalStorage localStorage = LocalStorage();
-      // int user_id = int.parse(await localStorage.getId('user_id') ?? '-1');
-      // return await HttpManager.instance
-      //     .getJsonRequest('/user/balance/subwallet/${user_id}');
+    Future<Map<String, dynamic>> getDatas() async {
+      int user_id =
+          HiveManager.instance.getMapFromBox(HiveBoxes.USER, users_id);
+      return await HttpManager.instance
+          .getJsonRequest('/user/balance/subwallet/${user_id}');
       return {};
     }
 
@@ -65,11 +68,8 @@ class SubWalletView extends StatelessWidget {
                               );
                             } else if (snapshot.hasData) {
                               print(snapshot.data);
-                              String balance =
-                                  snapshot.data?["data"]['balance'];
-                              String solBalance =
-                                  (int.parse(balance) / lamport_to_sol)
-                                      .toString();
+                              double balance = snapshot.data?["data"];
+                              double solBalance = (balance);
                               return Column(
                                 children: [
                                   Center(

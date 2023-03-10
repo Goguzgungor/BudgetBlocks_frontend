@@ -8,6 +8,7 @@ import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/components/transaction/tran_text_block.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
 import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
@@ -16,6 +17,8 @@ import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
 import 'package:solsafe/ui/show_mnemonic/controller/show_mnemonic_controller.dart';
 import 'package:solsafe/ui/subwallet_create/controller/subwallet_create_controller.dart';
+
+part 'ads.dart';
 
 class SubWalletCreateView extends StatelessWidget {
   const SubWalletCreateView({super.key});
@@ -55,32 +58,33 @@ class SubWalletCreateView extends StatelessWidget {
             ),
             CoreTextField(
                 controller: controller.transacCont, hintText: 'Balance'),
+            _Example(),
             SizedBox(
               height: 50,
             ),
             InkWell(
                 onTap: () async {
-                  // int user_id =
-                  //     int.parse(await controller.getLocal(users_id) ?? '-1');
-                  // int mainwalletId = int.parse(
-                  //     await controller.getLocal("mainwallet_id") ?? '-1');
-                  // dynamic requestObject = {
-                  //   "user_name": controller.usernameCont.text,
-                  //   "password": controller.passCont.text,
-                  //   "balance": int.parse(controller.transacCont.text),
-                  //   "sub_wallet_name": controller.walletnameCont.text,
-                  //   "relation_obj": {
-                  //     "user_id": user_id,
-                  //     "mainwallet_id": mainwalletId
-                  //   }
-                  // };
-                  // await HttpManager.instance
-                  //     .postJsonRequest('/user/create/subwallet', requestObject);
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => MainWalletScreen(),
-                  //   ),
-                  // );
+                  int user_id = HiveManager.instance
+                      .getMapFromBox(HiveBoxes.USER, users_id);
+                  int mainwalletId = HiveManager.instance
+                      .getMapFromBox(HiveBoxes.USER, HiveBoxes.MAINWALLET);
+                  dynamic requestObject = {
+                    "user_name": controller.usernameCont.text,
+                    "password": controller.passCont.text,
+                    "balance": int.parse(controller.transacCont.text),
+                    "sub_wallet_name": controller.walletnameCont.text,
+                    "relation_obj": {
+                      "user_id": user_id,
+                      "mainwallet_id": mainwalletId
+                    }
+                  };
+                  await HttpManager.instance
+                      .postJsonRequest('/user/create/subwallet', requestObject);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => MainWalletScreen(),
+                    ),
+                  );
                 },
                 child: RedButton(text: 'Create'))
           ]),

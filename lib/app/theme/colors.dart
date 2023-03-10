@@ -23,6 +23,7 @@ class AppColor {
 
   static const Color grey = Color.fromRGBO(255, 255, 255, 0.1);
   static const Color background = Color(0xff000000);
+  static const Color greyBackground = Color(0xff242424);
   static const Color boxGrey = Color(0xffD9D9D9);
   static const Color primaryContainer = Color.fromRGBO(255, 255, 255, 0.1);
   static const Color slidableRedColor = Color.fromRGBO(255, 255, 255, 0.7);

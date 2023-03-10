@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:solsafe/app/components/confirn_transaction/sol_middle_barr.dart';
 import 'package:solsafe/app/components/core/bottom_bar.dart';
 import 'package:solsafe/app/components/core/bottombar_icon.dart';
 import 'package:solsafe/app/components/core/core_app_barr.dart';
@@ -21,21 +22,23 @@ import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/check/check.dart';
+import 'package:solsafe/ui/confirm_transaction/controller/confirm_transaction_controller.dart';
 import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
 import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
 
-class TransactionView extends StatelessWidget {
-  const TransactionView({super.key});
+import '../../../app/components/confirn_transaction/receiver_middle_barr.dart';
+
+class ConfirmTransactionView extends StatelessWidget {
+  const ConfirmTransactionView({super.key});
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
 
-    final controller = Get.find<TransactionController>();
+    final controller = Get.find<ConfirmTransactionController>();
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "Transaction"),
+        appBar: CoreAppBarr(context, text: "MainWallet"),
         backgroundColor: AppColor.background,
-        bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(
           width: 390..horizontalScale,
           height: 890.verticalScale,
@@ -47,58 +50,40 @@ class TransactionView extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            const TranTextBlock(text: 'You are sending'),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: 42.horizontalScale),
-                              child: Text(
-                                'SOL',
-                                style: amanountSolStyle.copyWith(
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 65.horizontalScale),
-                          child: SvgPicture.asset(
-                              'assets/wallet_page/sol_logo.svg'),
-                        ),
-                      ],
+                    const TranTextBlock(text: '''Do you confirm 
+sending?'''),
+                    Padding(
+                      padding: EdgeInsets.only(right: 42.horizontalScale),
                     ),
                     SizedBox(
                       height: 30.verticalScale,
                     ),
-                    CoreTextField(
-                        controller: controller.reciverText,
-                        hintText: 'Recipient address'),
                     SizedBox(
                       height: 10.verticalScale,
                     ),
-                    CoreTextField(
-                        controller: controller.amaountCont, hintText: 'Amonut'),
+                    SolMiddleBarr(balance: 20),
                     SizedBox(
-                      height: 10.verticalScale,
+                      height: 30.verticalScale,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Column(
                       children: [
-                        DarkCoreText(text: 'Available: 10.0xw5 SOL'),
-                        SizedBox(
-                          width: 50.horizontalScale,
+                        Padding(
+                          padding: EdgeInsets.only(left: 8.0.horizontalScale),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Sending To',
+                              style: middleBarStyle.copyWith(
+                                  fontSize: 14.verticalScale),
+                            ),
+                          ),
                         ),
-                        DarkButtonSmall(
-                          text: 'Max',
-                        )
+                        ReceiverMiddleBarr(balance: 20),
                       ],
                     ),
+                    DarkCoreText(text: 'Network fee:           \$0.00012'),
                     SizedBox(
-                      height: 200.verticalScale,
+                      height: 170.verticalScale,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

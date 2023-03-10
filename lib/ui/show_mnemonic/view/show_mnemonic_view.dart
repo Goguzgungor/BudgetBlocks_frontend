@@ -6,6 +6,7 @@ import 'package:solsafe/app/components/create_wallet/create_wallet_grid.dart';
 import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
 import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
@@ -52,6 +53,7 @@ class ShowMnemonicView extends StatelessWidget {
                   } else if (snapshot.hasData) {
                     print(snapshot.data);
                     int mainwalletId = snapshot.data?["data"]['mainwallet_id'];
+                    String public_key = snapshot.data?["data"][HiveConst.publicKey];
                     List mnemonicList = snapshot.data?["data"]["mnemonic"];
                     return Column(
                       children: [
@@ -83,12 +85,17 @@ secure place''',
                                 ]),
                             InkWell(
                                 onTap: () async {
-                                  // await controller.saveLocal(
-                                  //     'mainwallet_id', mainwalletId.toString());
+                                  await HiveManager.instance.addMapToBox(
+                                      HiveBoxes.USER,
+                                      HiveBoxes.MAINWALLET,
+                                      mainwalletId);
+                                  await HiveManager.instance.addMapToBox(
+                                      HiveBoxes.USER,
+                                      HiveConst.publicKey,
+                                      public_key);
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => MainWalletScreen(
-                                      ),
+                                      builder: (context) => MainWalletScreen(),
                                     ),
                                   );
                                 },

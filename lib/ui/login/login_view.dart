@@ -7,6 +7,8 @@ import 'package:solsafe/app/components/core/headline_text.dart';
 import 'package:solsafe/app/components/home/red_button.dart';
 import 'package:solsafe/app/constants/app_constant.dart';
 import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:solsafe/app/memory/hive_boxes.dart';
+import 'package:solsafe/app/memory/hive_manager.dart';
 import 'package:solsafe/app/navigation/size_config.dart';
 import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
@@ -70,16 +72,19 @@ class LoginView extends StatelessWidget {
                       Map<String, dynamic> resp = await HttpManager.instance
                           .postJsonRequest('/user/login', userData);
                       print(resp);
-                      String user_id = resp['data']['data']['id'].toString();
+                      int user_id = resp['data']['data']['id'];
 
-                      await controller.saveLocal(users_id, user_id);
+                      await controller.saveLocal(
+                          HiveBoxes.USER, users_id, user_id);
+
                       if (resp['data']['type'] == 'mainwallet') {
-                        String mainwallet_id = resp['data']['main_wallet_id']
-                                ['mainwallet_id']
-                            .toString();
+                        int mainwallet_id = resp['data']['data']["mainwallet_id"];
+                        String? public_id = resp['data']['data']['publicKey'];
+                        [HiveBoxes.MAINWALLET];
+                        await controller.saveLocal(HiveBoxes.USER,
+                            HiveBoxes.MAINWALLET, mainwallet_id);
                         await controller.saveLocal(
-                            'mainwallet_id', mainwallet_id);
-                        await controller.saveLocal('wallet_type', 'mainwallet');
+                            HiveBoxes.USER, HiveBoxes.WALLETTYPE, 'mainwallet');
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const MainWalletScreen(),
@@ -88,12 +93,16 @@ class LoginView extends StatelessWidget {
                       }
                       if (resp['data']['type'] == 'subwallet') {
                         int user_id = resp['data']['data']['id'];
+                        String public_id = resp['data']['data']['public_key'];
                         print(user_id.toString());
                         //user_id
                         //
                         await controller.saveLocal(
-                            'user_id', user_id.toString());
-                        await controller.saveLocal('wallet_type', 'subwallet');
+                            HiveBoxes.USER, 'user_id', user_id);
+                        dynamic user1 = HiveManager.instance
+                            .getMapFromBox(HiveBoxes.USER, 'user_id');
+                        await controller.saveLocal(
+                            HiveBoxes.USER, HiveBoxes.WALLETTYPE, 'subwallet');
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const SubWalletScreen(),

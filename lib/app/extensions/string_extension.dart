@@ -25,3 +25,7 @@ extension DiacriticsAwareString on String {
           ? nonDiacritics[diacritics.indexOf(char)]
           : char);
 }
+
+extension StringX on String {
+  String take(int nbChars) => substring(0, nbChars.clamp(0, length));
+}

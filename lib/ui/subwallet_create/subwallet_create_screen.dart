@@ -6,7 +6,7 @@ import 'package:solsafe/ui/subwallet_create/controller/subwallet_create_controll
 import 'package:solsafe/ui/subwallet_create/view/subwallet_create_view.dart';
 import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
 import 'package:solsafe/ui/transaction/view/transaction_view.dart';
-import 'package:solsafe/ui/transaction_detail/controller/transaction_detail_controller.dart';
+import 'package:solsafe/ui/subwallet_edit/controller/subwallet_edit_controller.dart';
 
 class SubWalletCreateScreen extends StatelessWidget {
   const SubWalletCreateScreen({super.key});

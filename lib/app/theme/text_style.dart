@@ -16,12 +16,17 @@ TextStyle walletCardTitle = TextStyle(
     fontSize: 14.horizontalScale,
     fontWeight: FontWeight.w400,
     color: Colors.white.withOpacity(0.7));
-TextStyle walletButtonStyle =  TextStyle(
+TextStyle walletButtonStyle = TextStyle(
     fontSize: 16.horizontalScale,
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: font_family);
-TextStyle textFieldStyle =  TextStyle(
+TextStyle middleBarStyle = TextStyle(
+    fontSize: 18.horizontalScale,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontFamily: font_family);
+TextStyle textFieldStyle = TextStyle(
     fontSize: 18.horizontalScale,
     fontWeight: FontWeight.w400,
     color: AppColor.background,

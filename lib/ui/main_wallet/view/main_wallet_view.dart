@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:solsafe/app/components/core/bottom_bar.dart';
 import 'package:solsafe/app/components/core/core_app_barr.dart';
@@ -12,6 +13,8 @@ import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/main_wallet/controller/main_wallet_controller.dart';
+import 'package:solsafe/ui/qr_reader/qr_reader.dart';
+import 'package:solsafe/ui/recieve/receive.screen.dart';
 import 'package:solsafe/ui/transaction/transaction_screen.dart';
 
 class MainWalletView extends StatelessWidget {
@@ -27,6 +30,7 @@ class MainWalletView extends StatelessWidget {
       return await HttpManager.instance
           .getJsonRequest('/user/balance/${mainwallet_id}');
     }
+
     return Scaffold(
       appBar: CoreAppBarr(context, text: 'Main Wallet'),
       backgroundColor: AppColor.background,
@@ -39,6 +43,22 @@ class MainWalletView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const QrReader(),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 8.0.horizontalScale),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: SvgPicture.asset(
+                              'assets/wallet_page/qr_icon.svg')),
+                    ),
+                  ),
                   SizedBox(
                     height: 50.verticalScale,
                   ),
@@ -63,18 +83,8 @@ class MainWalletView extends StatelessWidget {
                                     fontSize: 24.horizontalScale),
                               );
                             } else if (snapshot.hasData) {
-                              print(snapshot.data);
-                              print(snapshot.data);
-                              print(snapshot.data);
-                              print(snapshot.data);
-                              print(snapshot.data);
-
-                              
-
-                                         dynamic balance = 
+                              dynamic balance =
                                   snapshot.data?["data"]['balance'];
-                            
-
                               return Column(
                                 children: [
                                   Center(
@@ -113,11 +123,20 @@ class MainWalletView extends StatelessWidget {
                                 );
                               },
                               child: MainWalletButton(text: 'Send')),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 11.0.horizontalScale,
-                                right: 11.horizontalScale),
-                            child: MainWalletButton(text: 'Receive'),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const ReceiveScreen(),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 11.0.horizontalScale,
+                                  right: 11.horizontalScale),
+                              child: MainWalletButton(text: 'Receive'),
+                            ),
                           ),
                           MainWalletButton(text: 'Swap'),
                         ],

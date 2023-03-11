@@ -21,6 +21,7 @@ import 'package:solsafe/app/network/http_manager.dart';
 import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/check/check.dart';
+import 'package:solsafe/ui/confirm_transaction/confirm_transaction_screen.dart';
 import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
 import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
 
@@ -109,58 +110,11 @@ class TransactionView extends StatelessWidget {
                         ),
                         InkWell(
                             onTap: () async {
-                              String walletType = HiveManager.instance
-                                  .getMapFromBox(
-                                      HiveBoxes.USER, HiveBoxes.WALLETTYPE);
-                              if (walletType == 'mainwallet') {
-                                int mainwallet_id = HiveManager.instance
-                                    .getMapFromBox(
-                                        HiveBoxes.USER, HiveBoxes.MAINWALLET);
-                                dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
-                                  "mainwallet_id": mainwallet_id
-                                };
-
-                                Map<String, dynamic> signature =
-                                    await HttpManager.instance.postJsonRequest(
-                                        '/user/mainwallet/transaction/send',
-                                        requestObj);
-
-                                print(signature['data'].toString());
-
-                                print('DONEEEEEEEE');
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CheckView(
-                                        text: signature['data']
-                                                ['transaction_id']
-                                            .toString())));
-                              }
-
-                              if (walletType == 'subwallet') {
-                                int user_id = HiveManager.instance
-                                    .getMapFromBox(HiveBoxes.USER, users_id);
-                                dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
-                                  "user_id": user_id
-                                };
-
-                                Map<String, dynamic> signature =
-                                    await HttpManager.instance.postJsonRequest(
-                                        '/user/create/pendingtransaction',
-                                        requestObj);
-
-                                print(signature['data'].toString());
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SubWalletScreen()));
-                              }
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      ConfirmTransactionScreen(balance: double.parse(controller.amaountCont.text), publicKey: controller.reciverText.text,)));
                             },
-                            child: RedButtonSmall(text: 'Send')),
+                            child: RedButtonSmall(text: 'Next')),
                       ],
                     ),
                   ],

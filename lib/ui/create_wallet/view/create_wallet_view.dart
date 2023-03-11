@@ -56,7 +56,8 @@ have access.
           ),
           InkWell(
               onTap: () async {
-                int user_id = controller.getLocal(HiveBoxes.USER, users_id);;
+                int user_id = controller.getLocal(HiveBoxes.USER, users_id);
+                
                 print(user_id);
                 Navigator.of(context).push(
                   MaterialPageRoute(

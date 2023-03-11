@@ -28,69 +28,72 @@ class ReceiveView extends StatelessWidget {
                 width: 390..horizontalScale,
                 height: 890.verticalScale,
                 child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      TranTextBlock(
-                        text: 'Receive assests to wallet',
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 20.verticalScale),
-                        child: SizedBox(
-                          height: 250.verticalScale,
-                          width: 250.horizontalScale,
-                          child: DecoratedBox(
-                              decoration: BoxDecoration(color: AppColor.white),
-                              child: Center(
-                                child: QrImage(
-                                  data: controller.amaount.toString() +
-                                      " " +
-                                      controller.pubKey,
-                                  version: QrVersions.auto,
-                                ),
-                              )),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TranTextBlock(
+                          text: 'Receive assests to wallet',
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 140.horizontalScale,
-                              child: CoreTextField(
-                                  controller: controller.amaountCont,
-                                  hintText: 'Amaount'),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  right: 10.horizontalScale,
-                                  left: 25.horizontalScale),
-                              child: SvgPicture.asset(
-                                  'assets/wallet_page/sol_logo.svg'),
-                            ),
-                            Text(
-                              'SOL',
-                              style: amanountSolStyle.copyWith(
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 20.verticalScale),
+                          child: SizedBox(
+                            height: 250.verticalScale,
+                            width: 250.horizontalScale,
+                            child: DecoratedBox(
+                                decoration:
+                                    BoxDecoration(color: AppColor.white),
+                                child: Center(
+                                  child: QrImage(
+                                    data: controller.pubKey +
+                                        " " +
+                                        controller.amaount.toString(),
+                                    version: QrVersions.auto,
+                                  ),
+                                )),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 100.verticalScale,
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 25.verticalScale),
-                        child: InkWell(
-                            onTap: () {
-                              controller.generateQrQode();
-                            },
-                            child: RedButton(text: 'Generate New QR')),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 140.horizontalScale,
+                                child: CoreTextField(
+                                    controller: controller.amaountCont,
+                                    hintText: 'Amaount'),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    right: 10.horizontalScale,
+                                    left: 25.horizontalScale),
+                                child: SvgPicture.asset(
+                                    'assets/wallet_page/sol_logo.svg'),
+                              ),
+                              Text(
+                                'SOL',
+                                style: amanountSolStyle.copyWith(
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 100.verticalScale,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 25.verticalScale),
+                          child: InkWell(
+                              onTap: () {
+                                controller.generateQrQode();
+                              },
+                              child: RedButton(text: 'Generate New QR')),
+                        ),
+                      ],
+                    ),
                   ),
                 )),
           )),

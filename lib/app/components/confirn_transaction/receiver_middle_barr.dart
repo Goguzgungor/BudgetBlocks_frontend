@@ -6,10 +6,10 @@ import 'package:solsafe/app/theme/colors.dart';
 import 'package:solsafe/app/theme/text_style.dart';
 
 class ReceiverMiddleBarr extends StatelessWidget {
-  final dynamic balance;
+  final String publicKey;
   const ReceiverMiddleBarr({
     super.key,
-    this.balance,
+    required this.publicKey,
   });
 
   @override
@@ -33,7 +33,7 @@ class ReceiverMiddleBarr extends StatelessWidget {
             ],
           ),
           Text(
-            '\$${balance.toString() * 20}'.take(8) + '...',
+            publicKey.take(8) + '...',
             style: middleBarStyle.copyWith(
                 fontSize: 14.verticalScale, color: AppColor.textDarkGrey),
           ),

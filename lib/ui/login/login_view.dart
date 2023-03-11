@@ -72,6 +72,7 @@ class LoginView extends StatelessWidget {
                       Map<String, dynamic> resp = await HttpManager.instance
                           .postJsonRequest('/user/login', userData);
                       print(resp);
+
                       int user_id = resp['data']['data']['id'];
 
                       await controller.saveLocal(
@@ -81,6 +82,8 @@ class LoginView extends StatelessWidget {
                         int mainwallet_id = resp['data']['data']["mainwallet_id"];
                         String? public_id = resp['data']['data']['publicKey'];
                         [HiveBoxes.MAINWALLET];
+                          await controller.saveLocal(
+                            HiveBoxes.USER, 'public_key', public_id);
                         await controller.saveLocal(HiveBoxes.USER,
                             HiveBoxes.MAINWALLET, mainwallet_id);
                         await controller.saveLocal(
@@ -93,14 +96,11 @@ class LoginView extends StatelessWidget {
                       }
                       if (resp['data']['type'] == 'subwallet') {
                         int user_id = resp['data']['data']['id'];
-                        String public_id = resp['data']['data']['public_key'];
-                        print(user_id.toString());
-                        //user_id
-                        //
+                        String public_key = resp['data']['data']['public_key'];
                         await controller.saveLocal(
                             HiveBoxes.USER, 'user_id', user_id);
-                        dynamic user1 = HiveManager.instance
-                            .getMapFromBox(HiveBoxes.USER, 'user_id');
+                        await controller.saveLocal(
+                            HiveBoxes.USER, 'public_key', public_key);
                         await controller.saveLocal(
                             HiveBoxes.USER, HiveBoxes.WALLETTYPE, 'subwallet');
                         Navigator.of(context).push(

@@ -24,12 +24,16 @@ import 'package:solsafe/app/theme/text_style.dart';
 import 'package:solsafe/ui/check/check.dart';
 import 'package:solsafe/ui/confirm_transaction/controller/confirm_transaction_controller.dart';
 import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
+import 'package:solsafe/ui/success_transaction/success_transaction_screen.dart';
 import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
 
 import '../../../app/components/confirn_transaction/receiver_middle_barr.dart';
 
 class ConfirmTransactionView extends StatelessWidget {
-  const ConfirmTransactionView({super.key});
+  final dynamic balance;
+  final String publicKey;
+  const ConfirmTransactionView(
+      {super.key, required this.balance, required this.publicKey});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +65,7 @@ sending?'''),
                     SizedBox(
                       height: 10.verticalScale,
                     ),
-                    SolMiddleBarr(balance: 20),
+                    SolMiddleBarr(balance: balance),
                     SizedBox(
                       height: 30.verticalScale,
                     ),
@@ -78,7 +82,9 @@ sending?'''),
                             ),
                           ),
                         ),
-                        ReceiverMiddleBarr(balance: 20),
+                        ReceiverMiddleBarr(
+                          publicKey: publicKey,
+                        ),
                       ],
                     ),
                     DarkCoreText(text: 'Network fee:           \$0.00012'),
@@ -102,9 +108,8 @@ sending?'''),
                                     .getMapFromBox(
                                         HiveBoxes.USER, HiveBoxes.MAINWALLET);
                                 dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
+                                  "reciver_public_key": publicKey,
+                                  "balance": balance,
                                   "mainwallet_id": mainwallet_id
                                 };
 
@@ -117,10 +122,11 @@ sending?'''),
 
                                 print('DONEEEEEEEE');
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CheckView(
-                                        text: signature['data']
-                                                ['transaction_id']
-                                            .toString())));
+                                    builder: (context) =>
+                                        SuccessTransactionScreen(
+                                          balance: balance,
+                                          publicKey: publicKey,
+                                        )));
                               }
 
                               if (walletType == 'subwallet') {

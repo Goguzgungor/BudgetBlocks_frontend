@@ -36,10 +36,6 @@ class SolMiddleBarr extends StatelessWidget {
             style: middleBarStyle.copyWith(
                 fontSize: 14.verticalScale, color: AppColor.textDarkGrey),
           ),
-          Text(
-            '\$${balance * 22} ',
-            style: middleBarStyle.copyWith(fontSize: 14.verticalScale),
-          ),
         ]),
       ),
     );

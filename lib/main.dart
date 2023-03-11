@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/ui/confirm_transaction/confirm_transaction_screen.dart';
-import 'package:solsafe/ui/deneme.dart';
 import 'package:solsafe/ui/login/screen/login_screen.dart';
-import 'package:solsafe/ui/recieve/receive.screen.dart';
-import 'package:solsafe/ui/recieve/view/receive.view.dart';
-import 'package:solsafe/ui/subwallet_edit/subwallet_edit_screen.dart';
-import 'package:solsafe/ui/subwallet_edit/view/subwallet_edit_view.dart';
+import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
+import 'package:solsafe/ui/qr_reader/qr_reader.dart';
+import 'package:solsafe/ui/save_expense/save_expense_view.dart';
+import 'package:solsafe/ui/success_transaction/success_transaction_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HiveManager.instance.hiveInit();
+
+  await Future.delayed(const Duration(milliseconds: 300));
+
   runApp(const MyApp());
 }
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        home: ConfirmTransactionScreen());
+        title: 'Budget Blocks',
+        home: LoginScreen());
   }
 }

@@ -68,8 +68,8 @@ class SubWalletView extends StatelessWidget {
                               );
                             } else if (snapshot.hasData) {
                               print(snapshot.data);
-                              double balance = snapshot.data?["data"];
-                              double solBalance = (balance);
+                              dynamic balance = snapshot.data?["data"];
+                              dynamic solBalance = (balance);
                               return Column(
                                 children: [
                                   Center(

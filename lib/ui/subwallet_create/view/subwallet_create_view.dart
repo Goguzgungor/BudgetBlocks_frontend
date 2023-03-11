@@ -34,60 +34,63 @@ class SubWalletCreateView extends StatelessWidget {
         body: SizedBox(
           width: 390..horizontalScale,
           height: 890.verticalScale,
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            TranTextBlock(
-              text: 'Create New Sub Wallet',
-            ),
-            SizedBox(
-              height: 50.verticalScale,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.verticalScale),
-              child: CoreTextField(
-                  controller: controller.walletnameCont,
-                  hintText: 'Wallet Name'),
-            ),
-            CoreTextField(
-                controller: controller.usernameCont,
-                hintText: 'SubWallet Username'),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.verticalScale),
-              child: CoreTextField(
-                  controller: controller.passCont,
-                  hintText: 'SubWallet Password'),
-            ),
-            CoreTextField(
-                controller: controller.transacCont, hintText: 'Balance'),
-            _Example(),
-            SizedBox(
-              height: 50,
-            ),
-            InkWell(
-                onTap: () async {
-                  int user_id = HiveManager.instance
-                      .getMapFromBox(HiveBoxes.USER, users_id);
-                  int mainwalletId = HiveManager.instance
-                      .getMapFromBox(HiveBoxes.USER, HiveBoxes.MAINWALLET);
-                  dynamic requestObject = {
-                    "user_name": controller.usernameCont.text,
-                    "password": controller.passCont.text,
-                    "balance": int.parse(controller.transacCont.text),
-                    "sub_wallet_name": controller.walletnameCont.text,
-                    "relation_obj": {
-                      "user_id": user_id,
-                      "mainwallet_id": mainwalletId
-                    }
-                  };
-                  await HttpManager.instance
-                      .postJsonRequest('/user/create/subwallet', requestObject);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => MainWalletScreen(),
-                    ),
-                  );
-                },
-                child: RedButton(text: 'Create'))
-          ]),
+          child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              TranTextBlock(
+                text: 'Create New Sub Wallet',
+              ),
+              SizedBox(
+                height: 50.verticalScale,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.verticalScale),
+                child: CoreTextField(
+                    controller: controller.walletnameCont,
+                    hintText: 'Wallet Name'),
+              ),
+              CoreTextField(
+                  controller: controller.usernameCont,
+                  hintText: 'SubWallet Username'),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.verticalScale),
+                child: CoreTextField(
+                    controller: controller.passCont,
+                    hintText: 'SubWallet Password'),
+              ),
+              CoreTextField(
+                  controller: controller.transacCont, hintText: 'Balance'),
+              _Example(),
+              SizedBox(
+                height: 50,
+              ),
+              InkWell(
+                  onTap: () async {
+                    int user_id = HiveManager.instance
+                        .getMapFromBox(HiveBoxes.USER, users_id);
+                    int mainwalletId = HiveManager.instance
+                        .getMapFromBox(HiveBoxes.USER, HiveBoxes.MAINWALLET);
+                    dynamic requestObject = {
+                      "user_name": controller.usernameCont.text,
+                      "password": controller.passCont.text,
+                      "balance": int.parse(controller.transacCont.text),
+                      "sub_wallet_name": controller.walletnameCont.text,
+                      "relation_obj": {
+                        "user_id": user_id,
+                        "mainwallet_id": mainwalletId
+                      }
+                    };
+                    await HttpManager.instance.postJsonRequest(
+                        '/user/create/subwallet', requestObject);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => MainWalletScreen(),
+                      ),
+                    );
+                  },
+                  child: RedButton(text: 'Create'))
+            ]),
+          ),
         ));
   }
 }

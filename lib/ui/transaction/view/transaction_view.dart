@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/bottom_bar.dart';
-import 'package:solsafe/app/components/core/bottombar_icon.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/core_text_field.dart';
-import 'package:solsafe/app/components/core/dark_button.dart';
-import 'package:solsafe/app/components/core/dark_button_small.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/core/red_button_small.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
-import 'package:solsafe/app/components/transaction/tran_text_block.dart';
-import 'package:solsafe/app/constants/app_constant.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/check/check.dart';
-import 'package:solsafe/ui/confirm_transaction/confirm_transaction_screen.dart';
-import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
-import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
+import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/bottombar_icon.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/core_text_field.dart';
+import 'package:budgetBlocks/app/components/core/dark_button.dart';
+import 'package:budgetBlocks/app/components/core/dark_button_small.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/core/red_button_small.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/components/main_wallet/main_wallet_button.dart';
+import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/check/check.dart';
+import 'package:budgetBlocks/ui/confirm_transaction/confirm_transaction_screen.dart';
+import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
+import 'package:budgetBlocks/ui/transaction/controller/transaction_controller.dart';
 
 class TransactionView extends StatelessWidget {
   const TransactionView({super.key});
@@ -82,7 +82,7 @@ class TransactionView extends StatelessWidget {
                       height: 10.verticalScale,
                     ),
                     CoreTextField(
-                        controller: controller.amaountCont, hintText: 'Amonut'),
+                        controller: controller.amaountCont, hintText: 'Amount'),
                     SizedBox(
                       height: 10.verticalScale,
                     ),
@@ -112,7 +112,10 @@ class TransactionView extends StatelessWidget {
                             onTap: () async {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      ConfirmTransactionScreen(balance: double.parse(controller.amaountCont.text), publicKey: controller.reciverText.text,)));
+                                      ConfirmTransactionScreen(
+                                        balance: controller.amaountCont.text,
+                                        publicKey: controller.reciverText.text,
+                                      )));
                             },
                             child: RedButtonSmall(text: 'Next')),
                       ],

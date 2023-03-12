@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:solsafe/app/extensions/string_extension.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/extensions/string_extension.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 
 class ReceiverMiddleBarr extends StatelessWidget {
   final String publicKey;
@@ -27,7 +27,7 @@ class ReceiverMiddleBarr extends StatelessWidget {
                 style: middleBarStyle.copyWith(fontWeight: FontWeight.w400),
               ),
               Text(
-                'Viyana Caffe Shop',
+                'Vienna Caffe Shop',
                 style: middleBarStyle,
               ),
             ],

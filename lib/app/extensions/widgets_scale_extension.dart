@@ -1,5 +1,4 @@
-
-import 'package:solsafe/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
 
 import '../navigation/size_config.dart';
 

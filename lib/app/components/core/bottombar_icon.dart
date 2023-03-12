@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BottomBarrIcon extends StatelessWidget {
   const BottomBarrIcon({super.key});
@@ -10,9 +11,7 @@ class BottomBarrIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset('assets/wallet_page/wallet_icon.png'),
-      ],
+      children: [SvgPicture.asset('assets/wallet_page/wallet_empty.svg')],
     );
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/create_wallet/controller/create_wallet_controller.dart';
-import 'package:solsafe/ui/show_mnemonic/show_mnemonic_screen.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/create_wallet/controller/create_wallet_controller.dart';
+import 'package:budgetBlocks/ui/show_mnemonic/show_mnemonic_screen.dart';
 
 import '../../../app/constants/app_constant.dart';
 
@@ -57,7 +57,7 @@ have access.
           InkWell(
               onTap: () async {
                 int user_id = controller.getLocal(HiveBoxes.USER, users_id);
-                
+
                 print(user_id);
                 Navigator.of(context).push(
                   MaterialPageRoute(

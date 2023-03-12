@@ -1,20 +1,24 @@
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/ui/recieve/receive.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/bottom_bar.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
-import 'package:solsafe/app/constants/app_constant.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/main_wallet/controller/main_wallet_controller.dart';
-import 'package:solsafe/ui/subwallet/controller/subwallet_controller.dart';
-import 'package:solsafe/ui/transaction/transaction_screen.dart';
+import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/main_wallet/main_wallet_button.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/main_wallet/controller/main_wallet_controller.dart';
+import 'package:budgetBlocks/ui/subwallet/controller/subwallet_controller.dart';
+import 'package:budgetBlocks/ui/transaction/transaction_screen.dart';
+
+import '../../../app/components/core/logged_core_app_barr.dart';
 
 class SubWalletView extends StatelessWidget {
   const SubWalletView({super.key});
@@ -33,7 +37,7 @@ class SubWalletView extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CoreAppBarr(context, text: 'Main Wallet'),
+      appBar: LoggedCoreAppBarr(context, text: 'Main Wallet'),
       backgroundColor: AppColor.background,
       body: Center(
         child: SizedBox(
@@ -108,13 +112,24 @@ class SubWalletView extends StatelessWidget {
                                 );
                               },
                               child: MainWalletButton(text: 'Send')),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 11.0.horizontalScale,
-                                right: 11.horizontalScale),
-                            child: MainWalletButton(text: 'Receive'),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ReceiveScreen(),
+                              ));
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 11.0.horizontalScale,
+                                  right: 11.horizontalScale),
+                              child: MainWalletButton(text: 'Receive'),
+                            ),
                           ),
-                          MainWalletButton(text: 'Swap'),
+                          InkWell(
+                              onTap: () {
+                                showCoreSnackBarr(context,comingSoon);
+                              },
+                              child: MainWalletButton(text: 'Swap')),
                         ],
                       ),
                       SizedBox(

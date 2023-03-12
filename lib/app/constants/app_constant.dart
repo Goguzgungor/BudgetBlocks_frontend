@@ -8,6 +8,8 @@ const String relation_id = 'relation_id';
 /// Dakika
 const String minuteUnite = 'dk';
 
+const String comingSoon = 'Coming Soon';
+
 const int lamport = 1000000000;
 
 /// Tasarım Genişlik

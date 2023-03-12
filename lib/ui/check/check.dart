@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
 
 class CheckView extends StatelessWidget {
   final String text;

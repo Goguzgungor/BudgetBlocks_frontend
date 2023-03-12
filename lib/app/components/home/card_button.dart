@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solsafe/app/base/base.state.dart';
-import 'package:solsafe/app/constants/padding_and_radius_size.dart';
+import 'package:budgetBlocks/app/base/base.state.dart';
+import 'package:budgetBlocks/app/constants/padding_and_radius_size.dart';
 
 class CardButton extends BaseStateless {
   final TextStyle style;
@@ -15,12 +15,12 @@ class CardButton extends BaseStateless {
             color: color, borderRadius: BorderRadius.circular(100)),
         child: SizedBox(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: paddingXS),
-              child: Center(
-                  child: Text(
-                text,
-                style: style,
-              )),
-            )));
+          padding: const EdgeInsets.symmetric(vertical: paddingXS),
+          child: Center(
+              child: Text(
+            text,
+            style: style,
+          )),
+        )));
   }
 }

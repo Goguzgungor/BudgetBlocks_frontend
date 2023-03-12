@@ -1,17 +1,22 @@
+import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budgetBlocks/app/components/save_expense/dropdown.dart';
+import 'package:budgetBlocks/ui/save_expense/controller/save_expense_controller.dart';
 import 'package:flutter/material.dart';
 
-import 'package:solsafe/app/components/confirn_transaction/sol_middle_barr.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/dark_button.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/core/red_button_small.dart';
-import 'package:solsafe/app/components/transaction/tran_text_block.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
-import '../../../app/components/confirn_transaction/receiver_middle_barr.dart';
+import 'package:budgetBlocks/app/components/confirn_transaction/sol_middle_barr.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/dark_button.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/core/red_button_small.dart';
+import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:get/get.dart';
+import '../../../../app/components/confirn_transaction/receiver_middle_barr.dart';
 
 class SaveExpenseView extends StatelessWidget {
   final String publicKey;
@@ -22,13 +27,15 @@ class SaveExpenseView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    final controller = Get.find<SaveExpenseController>();
 
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "MainWallet"),
+        appBar: LoggedCoreAppBarr(context, text: "MainWallet"),
         backgroundColor: AppColor.background,
+        bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(
-          width: 390..horizontalScale,
-          height: 890.verticalScale,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(
               height: 50.verticalScale,
@@ -46,29 +53,25 @@ class SaveExpenseView extends StatelessWidget {
                     ),
                     SolMiddleBarr(balance: balance),
                     SizedBox(
-                      height: 30.verticalScale,
+                      height: 50.verticalScale,
                     ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 8.0.horizontalScale),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Sending To',
-                              style: middleBarStyle.copyWith(
-                                  fontSize: 14.verticalScale),
-                            ),
-                          ),
-                        ),
-                        ReceiverMiddleBarr(
-                          publicKey: publicKey,
-                        ),
-                      ],
+                    ReceiverMiddleBarr(
+                      publicKey: publicKey,
                     ),
-                    DarkCoreText(text: 'Network fee:           \$0.00012'),
                     SizedBox(
-                      height: 170.verticalScale,
+                      height: 50.verticalScale,
+                    ),
+                    SizedBox(
+                      width: 270,
+                      height: 35,
+                      child: Center(
+                        child: DecoratedBox(
+                            decoration: BoxDecoration(color: AppColor.white),
+                            child: CustomDropdownButton()),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 130.verticalScale,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

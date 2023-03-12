@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solsafe/app/constants/padding_and_radius_size.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/app_light_theme.dart';
+import 'package:budgetBlocks/app/constants/padding_and_radius_size.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/app_light_theme.dart';
 
 import '../theme/colors.dart';
 
@@ -30,7 +30,7 @@ class AppDarkTheme implements AppTheme {
   Color shadowColor = Colors.black26;
 
   @override
-  ColorScheme colorScheme =  ColorScheme(
+  ColorScheme colorScheme = ColorScheme(
     primary: AppColor.primaryBlue,
     primaryContainer: AppColor.primaryContainer,
     secondary: Colors.white,
@@ -66,7 +66,8 @@ class AppDarkTheme implements AppTheme {
   @override
   CardTheme cardTheme = CardTheme(
     elevation: 0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radiusXS)),
+    shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(radiusXS)),
     color: Colors.black,
     margin: EdgeInsets.zero,
   );
@@ -242,7 +243,8 @@ class AppDarkTheme implements AppTheme {
   OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-      side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: AppColor.darkText)),
+      side: MaterialStateProperty.all<BorderSide>(
+          const BorderSide(color: AppColor.darkText)),
       padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
       textStyle: MaterialStateProperty.all<TextStyle>(
         TextStyle(

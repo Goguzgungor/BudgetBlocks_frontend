@@ -1,21 +1,24 @@
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/bottom_bar.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/main_wallet/controller/main_wallet_controller.dart';
-import 'package:solsafe/ui/qr_reader/qr_reader.dart';
-import 'package:solsafe/ui/recieve/receive.screen.dart';
-import 'package:solsafe/ui/transaction/transaction_screen.dart';
+import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/main_wallet/main_wallet_button.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/main_wallet/controller/main_wallet_controller.dart';
+import 'package:budgetBlocks/ui/qr_reader/qr_reader.dart';
+import 'package:budgetBlocks/ui/recieve/receive.screen.dart';
+import 'package:budgetBlocks/ui/transaction/transaction_screen.dart';
 
 class MainWalletView extends StatelessWidget {
   const MainWalletView({super.key});
@@ -32,7 +35,7 @@ class MainWalletView extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CoreAppBarr(context, text: 'Main Wallet'),
+      appBar: LoggedCoreAppBarr(context, text: 'Main Wallet'),
       backgroundColor: AppColor.background,
       bottomNavigationBar: CustomBottomBar(),
       body: Center(
@@ -87,11 +90,23 @@ class MainWalletView extends StatelessWidget {
                                   snapshot.data?["data"]['balance'];
                               return Column(
                                 children: [
-                                  Center(
-                                    child: Text(
-                                      '${balance} SOL',
-                                      style: headline1.copyWith(fontSize: 48),
-                                    ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/wallet_page/sol_logo.svg'),
+                                      SizedBox(
+                                        width: 20.horizontalScale,
+                                      ),
+                                      Text(
+                                        '${balance}',
+                                        style: headline1.copyWith(fontSize: 48),
+                                      ),
+                                      Text(
+                                        ' SOL',
+                                        style: headline1.copyWith(fontSize: 38),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               );
@@ -138,7 +153,11 @@ class MainWalletView extends StatelessWidget {
                               child: MainWalletButton(text: 'Receive'),
                             ),
                           ),
-                          MainWalletButton(text: 'Swap'),
+                          InkWell(
+                              onTap: () {
+                                showCoreSnackBarr(context, comingSoon);
+                              },
+                              child: MainWalletButton(text: 'Swap')),
                         ],
                       ),
                       SizedBox(
@@ -150,12 +169,16 @@ class MainWalletView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                'TOKENs',
+                                'Tokens',
                                 style: headline1.copyWith(
                                   fontSize: 18.verticalScale,
                                 ),
                               ),
-                              DarkCoreText(text: 'NFTs'),
+                              InkWell(
+                                  onTap: () {
+                                    showCoreSnackBarr(context, comingSoon);
+                                  },
+                                  child: DarkCoreText(text: 'NFTs')),
                               Text(
                                 'NFTs',
                                 style: textFieldStyle,

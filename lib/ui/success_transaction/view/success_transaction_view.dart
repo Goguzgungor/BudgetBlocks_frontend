@@ -1,16 +1,18 @@
+import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/big_dark_button.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/components/success_transaction/success_text.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
-import 'package:solsafe/ui/save_expense/save_expense_view.dart';
-import 'package:solsafe/ui/success_transaction/controller/success_transaction_controller.dart';
+import 'package:budgetBlocks/app/components/core/big_dark_button.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/components/success_transaction/success_text.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budgetBlocks/ui/save_expense/view/save_expense_view.dart';
+import 'package:budgetBlocks/ui/success_transaction/controller/success_transaction_controller.dart';
 import '../../../app/components/confirn_transaction/receiver_middle_barr.dart';
 
 class SuccessTransactionView extends StatelessWidget {
@@ -25,8 +27,9 @@ class SuccessTransactionView extends StatelessWidget {
 
     final controller = Get.find<SuccessTransactionController>();
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "MainWallet"),
+        appBar: LoggedCoreAppBarr(context, text: "MainWallet"),
         backgroundColor: AppColor.background,
+        bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(
           width: 390..horizontalScale,
           height: 890.verticalScale,
@@ -49,7 +52,7 @@ class SuccessTransactionView extends StatelessWidget {
                 ReceiverMiddleBarr(publicKey: publicKey),
                 DarkCoreText(text: 'View Transaction'),
                 SizedBox(
-                  height: 170.verticalScale,
+                  height: 120.verticalScale,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,

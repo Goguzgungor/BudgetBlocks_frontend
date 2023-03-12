@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 
 class SolMiddleBarr extends StatelessWidget {
   final dynamic balance;
@@ -34,7 +34,7 @@ class SolMiddleBarr extends StatelessWidget {
           Text(
             '\$${balance} Sol',
             style: middleBarStyle.copyWith(
-                fontSize: 14.verticalScale, color: AppColor.textDarkGrey),
+                fontSize: 14.verticalScale, color: AppColor.white),
           ),
         ]),
       ),

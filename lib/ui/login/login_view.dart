@@ -1,22 +1,24 @@
+import 'package:budgetBlocks/app/components/login/login_app_barr.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/core_text_field.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/core/headline_text.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/constants/app_constant.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/ui/auth/screen/auth_screen.dart';
-import 'package:solsafe/ui/landing/landing_screen.dart';
-import 'package:solsafe/ui/login/controller/login_controller.dart';
-import 'package:solsafe/ui/main_wallet/main_wallet_screen.dart';
-import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/core_text_field.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/core/headline_text.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/ui/auth/screen/auth_screen.dart';
+import 'package:budgetBlocks/ui/landing/landing_screen.dart';
+import 'package:budgetBlocks/ui/login/controller/login_controller.dart';
+import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -26,7 +28,7 @@ class LoginView extends StatelessWidget {
     SizeConfig.init(context);
     final controller = Get.find<LoginController>();
     return Scaffold(
-      appBar: CoreAppBarr(context, text: 'Login Wallet'),
+      appBar: LoginAppBarr(context, text: 'Budget Blocks'),
       backgroundColor: AppColor.background,
       body: SizedBox(
         width: 390.horizontalScale,
@@ -35,12 +37,19 @@ class LoginView extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                HeadLineText(text: 'Login'),
+                SizedBox(),
                 Column(
                   children: [
+                    Text(
+                      'Login',
+                      style: headline1.copyWith(fontWeight: FontWeight.w900),
+                    ),
+                    SizedBox(
+                      height: 34.verticalScale,
+                    ),
                     CoreTextField(
                       controller: controller.username_controller,
-                      hintText: 'User name',
+                      hintText: 'Username',
                     ),
                     SizedBox(
                       height: 17.verticalScale,
@@ -79,10 +88,11 @@ class LoginView extends StatelessWidget {
                           HiveBoxes.USER, users_id, user_id);
 
                       if (resp['data']['type'] == 'mainwallet') {
-                        int mainwallet_id = resp['data']['data']["mainwallet_id"];
+                        int mainwallet_id =
+                            resp['data']['data']["mainwallet_id"];
                         String? public_id = resp['data']['data']['publicKey'];
                         [HiveBoxes.MAINWALLET];
-                          await controller.saveLocal(
+                        await controller.saveLocal(
                             HiveBoxes.USER, 'public_key', public_id);
                         await controller.saveLocal(HiveBoxes.USER,
                             HiveBoxes.MAINWALLET, mainwallet_id);

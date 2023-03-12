@@ -1,8 +1,9 @@
+import 'package:budgetBlocks/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 
 class CoreTextField extends StatelessWidget {
   final String hintText;
@@ -20,6 +21,7 @@ class CoreTextField extends StatelessWidget {
           decoration: BoxDecoration(color: Color(0xffD9D9D9)),
           child: Center(
             child: TextFormField(
+              style: textFieldStyle.copyWith(color: AppColor.background),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'This field cannot be null';
@@ -27,11 +29,12 @@ class CoreTextField extends StatelessWidget {
               },
               controller: controller,
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(left: 15),
-                  fillColor: Colors.white,
-                  hintText: hintText,
-                  hintStyle: textFieldStyle),
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(left: 15),
+                fillColor: Colors.white,
+                hintText: hintText,
+                hintStyle: textFieldStyle,
+              ),
             ),
           ),
         ),

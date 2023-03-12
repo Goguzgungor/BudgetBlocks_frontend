@@ -20,6 +20,10 @@ class AppColor {
   static const Color errorColor = Colors.red;
   static const Color lightRed = Color(0xffB86D6D);
   static const Color textDarkGrey = Color(0xff535353);
+  static const Color textGrey = Color(0xffA6A6A6);
+
+
+
 
   static const Color grey = Color.fromRGBO(255, 255, 255, 0.1);
   static const Color background = Color(0xff000000);

@@ -1,16 +1,17 @@
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/core_text_field.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/components/transaction/tran_text_block.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/recieve/controller/receieve.controller.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/core_text_field.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/recieve/controller/receieve.controller.dart';
 
 class ReceiveView extends StatelessWidget {
   const ReceiveView({super.key});
@@ -21,7 +22,7 @@ class ReceiveView extends StatelessWidget {
     final controller = Get.find<ReceiveViewController>();
     return Scaffold(
       key: controller.scaffoldKey,
-      appBar: CoreAppBarr(context, text: 'Main Wallet'),
+      appBar: LoggedCoreAppBarr(context, text: 'Main Wallet'),
       backgroundColor: AppColor.background,
       body: Obx(() => Center(
             child: SizedBox(
@@ -63,7 +64,7 @@ class ReceiveView extends StatelessWidget {
                                 width: 140.horizontalScale,
                                 child: CoreTextField(
                                     controller: controller.amaountCont,
-                                    hintText: 'Amaount'),
+                                    hintText: 'Amount'),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(

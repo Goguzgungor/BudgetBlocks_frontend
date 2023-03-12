@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/ui/confirm_transaction/confirm_transaction_screen.dart';
-import 'package:solsafe/ui/transaction/transaction_screen.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/ui/confirm_transaction/confirm_transaction_screen.dart';
+import 'package:budgetBlocks/ui/transaction/transaction_screen.dart';
 
 class QrReader extends StatefulWidget {
   const QrReader({Key? key}) : super(key: key);

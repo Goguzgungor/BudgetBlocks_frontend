@@ -1,4 +1,6 @@
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +15,8 @@ import 'package:budgetBlocks/app/network/http_manager.dart';
 import 'package:budgetBlocks/app/theme/colors.dart';
 import 'package:budgetBlocks/app/theme/text_style.dart';
 
+import '../../app/components/core/core_scafflod_messenger.dart';
+
 class SubWalletListView extends StatelessWidget {
   const SubWalletListView({super.key});
 
@@ -25,7 +29,7 @@ class SubWalletListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "Subwallet List"),
+        appBar: LoggedCoreAppBarr(context),
         backgroundColor: AppColor.background,
         body: SizedBox(
           width: 390..horizontalScale,
@@ -70,11 +74,20 @@ class SubWalletListView extends StatelessWidget {
                                         fontSize: 16.horizontalScale,
                                         color: AppColor.white),
                                   ),
-                                  subtitle: Text(
-                                    subWalletList[index]["public_key"],
-                                    style: middleBarstyle.copyWith(
-                                        fontSize: 8.horizontalScale,
-                                        color: AppColor.white),
+                                  subtitle: InkWell(
+                                    onTap: () {
+                                      Clipboard.setData(ClipboardData(
+                                          text: subWalletList[index]
+                                              ["public_key"]));
+                                      showCoreSnackBarr(
+                                          context, 'Copied To Clipboard');
+                                    },
+                                    child: Text(
+                                      subWalletList[index]["public_key"],
+                                      style: middleBarstyle.copyWith(
+                                          fontSize: 8.horizontalScale,
+                                          color: AppColor.white),
+                                    ),
                                   ),
                                 );
                               },

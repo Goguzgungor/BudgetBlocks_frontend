@@ -22,7 +22,7 @@ class ReceiveView extends StatelessWidget {
     final controller = Get.find<ReceiveViewController>();
     return Scaffold(
       key: controller.scaffoldKey,
-      appBar: LoggedCoreAppBarr(context, text: 'Main Wallet'),
+      appBar: LoggedCoreAppBarr(context),
       backgroundColor: AppColor.background,
       body: Obx(() => Center(
             child: SizedBox(

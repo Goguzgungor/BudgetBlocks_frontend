@@ -4,7 +4,6 @@ import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
 import 'package:budgetBlocks/app/components/core/headline_text.dart';
 import 'package:budgetBlocks/app/components/create_wallet/create_wallet_grid.dart';
 import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
 import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
 import 'package:budgetBlocks/app/memory/hive_boxes.dart';
 import 'package:budgetBlocks/app/memory/hive_manager.dart';
@@ -33,6 +32,9 @@ class ShowMnemonicView extends StatelessWidget {
           height: 890.verticalScale,
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             HeadLineText(text: 'Recovery Phrase'),
+            SizedBox(
+              height: 50.verticalScale,
+            ),
             FutureBuilder<Map<String, dynamic>>(
               future: HttpManager.instance
                   .getJsonRequest('/user/create/userwallet/${user_id}'),
@@ -72,10 +74,18 @@ class ShowMnemonicView extends StatelessWidget {
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Checkbox(
-                                    value: true,
-                                    onChanged: (value) {},
-                                  ),
+                                  Obx(() => Checkbox(
+                                        overlayColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.blue),
+                                        fillColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.blue),
+                                        value: controller.isOkey,
+                                        onChanged: (value) {
+                                          controller.changePermission();
+                                        },
+                                      )),
                                   Text(
                                     '''I have saved my recovery phrase in a
 secure place''',
@@ -84,6 +94,9 @@ secure place''',
                                         color: AppColor.white),
                                   ),
                                 ]),
+                            SizedBox(
+                              height: 20.verticalScale,
+                            ),
                             InkWell(
                                 onTap: () async {
                                   await HiveManager.instance.addMapToBox(

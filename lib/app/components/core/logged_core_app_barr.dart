@@ -16,11 +16,24 @@ import 'package:budgetBlocks/app/navigation/size_config.dart';
 import 'package:budgetBlocks/app/theme/app_light_theme.dart';
 import 'package:budgetBlocks/app/theme/colors.dart';
 import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:get/get.dart';
 
 class LoggedCoreAppBarr extends BaseStateless implements PreferredSizeWidget {
-  final String text;
   final BuildContext context;
-  const LoggedCoreAppBarr(this.context, {super.key, required this.text});
+  const LoggedCoreAppBarr(
+    this.context, {
+    super.key,
+  });
+  String? getTitle() {
+    String title = HiveManager.instance
+        .getMapFromBox(HiveBoxes.USER, HiveBoxes.WALLETTYPE);
+    if (title == 'mainwallet') {
+      return 'Main Wallet';
+    } else if (title == 'subwallet') {
+      return 'Sub Wallet';
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +55,7 @@ class LoggedCoreAppBarr extends BaseStateless implements PreferredSizeWidget {
             Column(
               children: [
                 Text(
-                  text,
+                  getTitle() ?? '',
                   style: CoreAppBarrStyle,
                 ),
                 InkWell(

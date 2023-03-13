@@ -1,5 +1,8 @@
 import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
 import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/ui/save_expense/save_expense_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:budgetBlocks/app/components/core/big_dark_button.dart';
@@ -27,7 +30,7 @@ class SuccessTransactionView extends StatelessWidget {
 
     final controller = Get.find<SuccessTransactionController>();
     return Scaffold(
-        appBar: LoggedCoreAppBarr(context, text: "MainWallet"),
+        appBar: LoggedCoreAppBarr(context),
         backgroundColor: AppColor.background,
         bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(
@@ -50,7 +53,11 @@ class SuccessTransactionView extends StatelessWidget {
                   height: 30.verticalScale,
                 ),
                 ReceiverMiddleBarr(publicKey: publicKey),
-                DarkCoreText(text: 'View Transaction'),
+                InkWell(
+                    onTap: () {
+                      showCoreSnackBarr(context, comingSoon);
+                    },
+                    child: DarkCoreText(text: 'View Transaction')),
                 SizedBox(
                   height: 120.verticalScale,
                 ),
@@ -60,7 +67,7 @@ class SuccessTransactionView extends StatelessWidget {
                     InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SaveExpenseView(
+                              builder: (context) => SaveExpenseScreen(
                                     balance: balance,
                                     publicKey: publicKey,
                                   )));

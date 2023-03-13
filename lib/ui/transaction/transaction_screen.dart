@@ -6,11 +6,12 @@ import 'package:budgetBlocks/ui/transaction/controller/transaction_controller.da
 import 'package:budgetBlocks/ui/transaction/view/transaction_view.dart';
 
 class TransactionScreen extends StatelessWidget {
-  const TransactionScreen({super.key});
+  final dynamic balance;
+  const TransactionScreen({super.key,required this.balance});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: TransactionController(), builder: (_) => const TransactionView());
+        init: TransactionController(), builder: (_) =>  TransactionView(balance: balance,));
   }
 }

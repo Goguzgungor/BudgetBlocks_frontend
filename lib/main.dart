@@ -1,6 +1,8 @@
 import 'package:budgetBlocks/ui/confirm_transaction/confirm_transaction_screen.dart';
 import 'package:budgetBlocks/ui/login/screen/login_screen.dart';
 import 'package:budgetBlocks/ui/save_expense/save_expense_screen.dart';
+import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
+import 'package:budgetBlocks/ui/subwallet/view/subwallet_view.dart';
 import 'package:budgetBlocks/ui/success_transaction/success_transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -26,9 +28,6 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Budget Blocks',
-        home: SaveExpenseScreen(
-          balance: 123,
-          publicKey: '',
-        ));
+        home: LoginScreen());
   }
 }

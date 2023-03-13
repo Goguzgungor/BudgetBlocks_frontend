@@ -26,7 +26,9 @@ import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
 import 'package:budgetBlocks/ui/transaction/controller/transaction_controller.dart';
 
 class TransactionView extends StatelessWidget {
-  const TransactionView({super.key});
+  final dynamic balance;
+
+  const TransactionView({super.key, required this.balance});
 
   @override
   Widget build(BuildContext context) {
@@ -89,12 +91,17 @@ class TransactionView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DarkCoreText(text: 'Available: 10.0xw5 SOL'),
+                        DarkCoreText(text: 'Available: $balance SOL'),
                         SizedBox(
                           width: 50.horizontalScale,
                         ),
-                        DarkButtonSmall(
-                          text: 'Max',
+                        InkWell(
+                          onTap: () {
+                            controller.amaountCont.text = balance.toString();
+                          },
+                          child: const DarkButtonSmall(
+                            text: 'Max',
+                          ),
                         )
                       ],
                     ),
@@ -104,7 +111,11 @@ class TransactionView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DarkButton(text: 'Cancel'),
+                        InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: DarkButton(text: 'Cancel')),
                         SizedBox(
                           width: 15.horizontalScale,
                         ),

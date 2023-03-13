@@ -52,8 +52,10 @@ class SettingsBottomBar extends StatelessWidget {
                         );
                       },
                       child: BottomBarrIcon()),
-                        InkWell(
-                      onTap: () => showCoreSnackBarr(context, comingSoon),
+                  InkWell(
+                      onTap: () {
+                        showCoreSnackBarr(context, comingSoon);
+                      },
                       child: SvgPicture.asset(
                           'assets/wallet_page/flash_icon.svg')),
                   InkWell(

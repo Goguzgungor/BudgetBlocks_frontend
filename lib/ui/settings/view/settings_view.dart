@@ -1,5 +1,7 @@
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
 import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
 import 'package:budgetBlocks/app/components/core/settings_bottom_barr.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
@@ -31,7 +33,7 @@ class SettingsView extends StatelessWidget {
 
     final controller = Get.find<SettingsController>();
     return Scaffold(
-        appBar: LoggedCoreAppBarr(context, text: "Settings"),
+        appBar: LoggedCoreAppBarr(context),
         bottomNavigationBar: SettingsBottomBar(),
         backgroundColor: AppColor.background,
         body: SizedBox(
@@ -47,10 +49,15 @@ class SettingsView extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Text(
-                      'Edit Main Wallet',
-                      style:
-                          CoreAppBarrStyle.copyWith(fontSize: 24.verticalScale),
+                    InkWell(
+                      onTap: () {
+                        showCoreSnackBarr(context, comingSoon);
+                      },
+                      child: Text(
+                        'Edit Main Wallet',
+                        style: CoreAppBarrStyle.copyWith(
+                            fontSize: 24.verticalScale),
+                      ),
                     ),
                     SizedBox(
                       height: 15.verticalScale,
@@ -89,10 +96,15 @@ class SettingsView extends StatelessWidget {
                     SizedBox(
                       height: 15.verticalScale,
                     ),
-                    Text(
-                      'Security Settings',
-                      style:
-                          CoreAppBarrStyle.copyWith(fontSize: 24.verticalScale),
+                    InkWell(
+                      onTap: () {
+                        showCoreSnackBarr(context, comingSoon);
+                      },
+                      child: Text(
+                        'Security Settings',
+                        style: CoreAppBarrStyle.copyWith(
+                            fontSize: 24.verticalScale),
+                      ),
                     ),
                     SizedBox(
                       height: 15.verticalScale,
@@ -115,10 +127,15 @@ class SettingsView extends StatelessWidget {
                     SizedBox(
                       height: 15.verticalScale,
                     ),
-                    Text(
-                      'About',
-                      style:
-                          CoreAppBarrStyle.copyWith(fontSize: 24.verticalScale),
+                    InkWell(
+                      onTap: () {
+                        showCoreSnackBarr(context, comingSoon);
+                      },
+                      child: Text(
+                        'About',
+                        style: CoreAppBarrStyle.copyWith(
+                            fontSize: 24.verticalScale),
+                      ),
                     ),
                     SizedBox(
                       height: 15.verticalScale,

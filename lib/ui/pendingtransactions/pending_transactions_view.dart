@@ -1,3 +1,5 @@
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budgetBlocks/ui/success_transaction/success_transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
@@ -23,7 +25,7 @@ class PendingTransactionsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "Pending Transactions"),
+        appBar: LoggedCoreAppBarr(context),
         backgroundColor: AppColor.background,
         body: SizedBox(
           width: 390..horizontalScale,
@@ -110,9 +112,12 @@ class PendingTransactionsListView extends StatelessWidget {
                                               ['transaction_id']);
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
-                                              builder: (context) => CheckView(
-                                                text: signature['data']
-                                                    ['transaction_id'],
+                                              builder: (context) =>
+                                                  SuccessTransactionScreen(
+                                                balance: subWalletList[index]
+                                                    ["balance"],
+                                                publicKey: subWalletList[index]
+                                                    ["receiver_pub_key"],
                                               ),
                                             ),
                                           );

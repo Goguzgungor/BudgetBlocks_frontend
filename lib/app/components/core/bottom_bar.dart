@@ -59,13 +59,21 @@ class CustomBottomBar extends StatelessWidget {
                           'assets/wallet_page/flash_icon.svg')),
                   InkWell(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SettingsScreen(),
-                          ),
-                        );
+                        if (HiveManager.instance.getMapFromBox(
+                                HiveBoxes.USER, HiveBoxes.WALLETTYPE) ==
+                            'subwallet') {
+                          showCoreSnackBarr(
+                              context, 'Only for mainwallets in beta');
+                        } else {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SettingsScreen(),
+                            ),
+                          );
+                        }
                       },
-                      child: Image.asset('assets/wallet_page/wheel_icon.png'))
+                      child: SvgPicture.asset(
+                          'assets/wallet_page/wheel_empty.svg'))
                 ]),
           ),
         ],

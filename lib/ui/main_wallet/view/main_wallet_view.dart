@@ -34,8 +34,9 @@ class MainWalletView extends StatelessWidget {
           .getJsonRequest('/user/balance/${mainwallet_id}');
     }
 
+    dynamic balance = 0.0;
     return Scaffold(
-      appBar: LoggedCoreAppBarr(context, text: 'Main Wallet'),
+      appBar: LoggedCoreAppBarr(context),
       backgroundColor: AppColor.background,
       bottomNavigationBar: CustomBottomBar(),
       body: Center(
@@ -86,8 +87,7 @@ class MainWalletView extends StatelessWidget {
                                     fontSize: 24.horizontalScale),
                               );
                             } else if (snapshot.hasData) {
-                              dynamic balance =
-                                  snapshot.data?["data"]['balance'];
+                              balance = snapshot.data?["data"]['balance'];
                               return Column(
                                 children: [
                                   Row(
@@ -133,9 +133,10 @@ class MainWalletView extends StatelessWidget {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const TransactionScreen(),
+                                         TransactionScreen(balance: balance,),
                                   ),
                                 );
+                                print(balance);
                               },
                               child: MainWalletButton(text: 'Send')),
                           InkWell(

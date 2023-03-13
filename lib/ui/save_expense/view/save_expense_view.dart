@@ -30,7 +30,7 @@ class SaveExpenseView extends StatelessWidget {
     final controller = Get.find<SaveExpenseController>();
 
     return Scaffold(
-        appBar: LoggedCoreAppBarr(context, text: "MainWallet"),
+        appBar: LoggedCoreAppBarr(context),
         backgroundColor: AppColor.background,
         bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(

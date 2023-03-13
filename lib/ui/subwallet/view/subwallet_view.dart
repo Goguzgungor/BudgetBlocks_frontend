@@ -1,6 +1,8 @@
 import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/ui/qr_reader/qr_reader.dart';
 import 'package:budgetBlocks/ui/recieve/receive.screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
 import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
@@ -33,12 +35,14 @@ class SubWalletView extends StatelessWidget {
           HiveManager.instance.getMapFromBox(HiveBoxes.USER, users_id);
       return await HttpManager.instance
           .getJsonRequest('/user/balance/subwallet/${user_id}');
-      return {};
     }
 
+    dynamic balance = 0.0;
+
     return Scaffold(
-      appBar: LoggedCoreAppBarr(context, text: 'Main Wallet'),
+      appBar: LoggedCoreAppBarr(context),
       backgroundColor: AppColor.background,
+      bottomNavigationBar: CustomBottomBar(),
       body: Center(
         child: SizedBox(
             width: 390.horizontalScale,
@@ -47,6 +51,22 @@ class SubWalletView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const QrReader(),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 8.0.horizontalScale),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: SvgPicture.asset(
+                              'assets/wallet_page/qr_icon.svg')),
+                    ),
+                  ),
                   SizedBox(
                     height: 50.verticalScale,
                   ),
@@ -73,12 +93,11 @@ class SubWalletView extends StatelessWidget {
                             } else if (snapshot.hasData) {
                               print(snapshot.data);
                               dynamic balance = snapshot.data?["data"];
-                              dynamic solBalance = (balance);
                               return Column(
                                 children: [
                                   Center(
                                     child: Text(
-                                      '${solBalance} SOL',
+                                      '${balance} SOL',
                                       style: headline1.copyWith(fontSize: 48),
                                     ),
                                   ),
@@ -106,8 +125,9 @@ class SubWalletView extends StatelessWidget {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TransactionScreen(),
+                                    builder: (context) => TransactionScreen(
+                                      balance: balance,
+                                    ),
                                   ),
                                 );
                               },
@@ -127,7 +147,7 @@ class SubWalletView extends StatelessWidget {
                           ),
                           InkWell(
                               onTap: () {
-                                showCoreSnackBarr(context,comingSoon);
+                                showCoreSnackBarr(context, comingSoon);
                               },
                               child: MainWalletButton(text: 'Swap')),
                         ],
@@ -141,12 +161,16 @@ class SubWalletView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                'TOKENs',
+                                'Tokens',
                                 style: headline1.copyWith(
                                   fontSize: 18.verticalScale,
                                 ),
                               ),
-                              DarkCoreText(text: 'NFTs'),
+                              InkWell(
+                                  onTap: () {
+                                    showCoreSnackBarr(context, comingSoon);
+                                  },
+                                  child: DarkCoreText(text: 'NFTs')),
                               Text(
                                 'NFTs',
                                 style: textFieldStyle,

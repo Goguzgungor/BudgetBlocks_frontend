@@ -42,7 +42,7 @@ class ConfirmTransactionView extends StatelessWidget {
 
     final controller = Get.find<ConfirmTransactionController>();
     return Scaffold(
-        appBar: LoggedCoreAppBarr(context, text: "MainWallet"),
+        appBar: LoggedCoreAppBarr(context),
         backgroundColor: AppColor.background,
         bottomNavigationBar: CustomBottomBar(),
         body: SizedBox(
@@ -96,7 +96,11 @@ sending?'''),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DarkButton(text: 'Cancel'),
+                        InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: DarkButton(text: 'Cancel')),
                         SizedBox(
                           width: 15.horizontalScale,
                         ),
@@ -135,12 +139,11 @@ sending?'''),
                                 int user_id = HiveManager.instance
                                     .getMapFromBox(HiveBoxes.USER, users_id);
                                 dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
+                                  "reciver_public_key": publicKey,
+                                  "balance": balance,
                                   "user_id": user_id
                                 };
-
+                                print(requestObj);
                                 Map<String, dynamic> signature =
                                     await HttpManager.instance.postJsonRequest(
                                         '/user/create/pendingtransaction',

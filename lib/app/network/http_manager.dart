@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:solsafe/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
 
 class HttpManager {
   static HttpManager? _instance;
@@ -28,7 +28,8 @@ class HttpManager {
       return {'status': false, 'message': e.message};
     }
   }
- getJsonRequestEasy(String urlPath_) async {
+
+  getJsonRequestEasy(String urlPath_) async {
     String uri = urlPath + urlPath_;
     debugPrint(uri);
     try {
@@ -40,7 +41,7 @@ class HttpManager {
         return {'status': false, 'message': body};
       }
     } on HttpException catch (e) {
-      return  e.message;
+      return e.message;
     }
   }
 

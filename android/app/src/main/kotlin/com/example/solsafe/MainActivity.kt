@@ -1,4 +1,4 @@
-package com.example.solsafe
+package com.example.budgetBlocks
 
 import io.flutter.embedding.android.FlutterActivity
 

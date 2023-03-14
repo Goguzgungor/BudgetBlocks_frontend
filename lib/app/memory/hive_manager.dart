@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
 
 class HiveManager {
   static HiveManager? _instance;
@@ -27,9 +27,10 @@ class HiveManager {
     if (!Hive.isBoxOpen(boxName)) await Hive.openBox(boxName);
   }
 
-  Future<void> addMapToBox(String boxName, Map<String, dynamic> map) async {
+  Future<void> addMapToBox(String boxName, String key, dynamic value) async {
+    Map hiveMap = {key: value};
     Box box = Hive.box(boxName);
-    await box.putAll(map);
+    await box.putAll(hiveMap);
   }
 
   Future<void> addListToBox(String boxName, List<dynamic> list) async {
@@ -37,10 +38,10 @@ class HiveManager {
     await box.put(boxName, list);
   }
 
-  Map<dynamic, dynamic> getMapFromBox(String boxName) {
+  dynamic getMapFromBox(String boxName, String key) {
     Box box = Hive.box(boxName);
     Map<dynamic, dynamic> map = box.toMap();
-    return map;
+    return map[key];
   }
 
   List<dynamic> getListFromBox(String boxName) {

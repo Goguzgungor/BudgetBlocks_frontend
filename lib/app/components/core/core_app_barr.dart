@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:solsafe/app/base/base.state.dart';
-import 'package:solsafe/app/constants/home/home_constant.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/theme/app_light_theme.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/base/base.state.dart';
+import 'package:budgetBlocks/app/constants/home/home_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/theme/app_light_theme.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 
 class CoreAppBarr extends BaseStateless implements PreferredSizeWidget {
   final String text;
@@ -22,7 +22,7 @@ class CoreAppBarr extends BaseStateless implements PreferredSizeWidget {
     return Column(
       children: [
         SizedBox(
-          height: 20.horizontalScale,
+          height: 40.horizontalScale,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,6 +35,9 @@ class CoreAppBarr extends BaseStateless implements PreferredSizeWidget {
               text,
               style: CoreAppBarrStyle,
             ),
+            SizedBox(
+              width: 100.verticalScale,
+            )
           ],
         ),
         Padding(
@@ -52,5 +55,5 @@ class CoreAppBarr extends BaseStateless implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(dynamicHeight(context, 94.horizontalScale));
+      Size.fromHeight(dynamicHeight(context, 100.horizontalScale));
 }

@@ -1,17 +1,19 @@
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/headline_text.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/components/import_wallet/import_wallet_app_barr.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/home/controller/home_controller.dart';
-import 'package:solsafe/ui/import_wallet/controller/import_wallet_controller.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/headline_text.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/components/import_wallet/import_wallet_app_barr.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/home/controller/home_controller.dart';
+import 'package:budgetBlocks/ui/import_wallet/controller/import_wallet_controller.dart';
 
 class ImportWalletView extends StatelessWidget {
   const ImportWalletView({super.key});
@@ -72,7 +74,11 @@ class ImportWalletView extends StatelessWidget {
                         }))),
                 Column(
                   children: [
-                    RedButton(text: 'Next'),
+                    InkWell(
+                        onTap: () {
+                          showCoreSnackBarr(context, comingSoon);
+                        },
+                        child: RedButton(text: 'Next')),
                     SizedBox(
                       height: 21.verticalScale,
                     ),

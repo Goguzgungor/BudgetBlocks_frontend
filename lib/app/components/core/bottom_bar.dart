@@ -1,15 +1,23 @@
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:solsafe/app/components/core/bottombar_icon.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/ui/landing/landing_screen.dart';
-import 'package:solsafe/ui/settings/settings_screen.dart';
+import 'package:budgetBlocks/app/components/core/bottombar_icon.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/ui/landing/landing_screen.dart';
+import 'package:budgetBlocks/ui/settings/settings_screen.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  const CustomBottomBar({super.key});
-
+  CustomBottomBar({super.key});
+  String walletType =
+      HiveManager.instance.getMapFromBox(HiveBoxes.USER, HiveBoxes.WALLETTYPE);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,17 +37,43 @@ class CustomBottomBar extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  BottomBarrIcon(),
-                  Image.asset('assets/wallet_page/flash_icon.png'),
                   InkWell(
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const SettingsScreen(),
+                            builder: (context) {
+                              if (walletType == 'subwallet') {
+                                return const SubWalletScreen();
+                              } else {
+                                return const MainWalletScreen();
+                              }
+                            },
                           ),
                         );
                       },
-                      child: Image.asset('assets/wallet_page/wheel_icon.png'))
+                      child: SvgPicture.asset(
+                          'assets/wallet_page/wallet_filled.svg')),
+                  InkWell(
+                      onTap: () => showCoreSnackBarr(context, comingSoon),
+                      child: SvgPicture.asset(
+                          'assets/wallet_page/flash_icon.svg')),
+                  InkWell(
+                      onTap: () {
+                        if (HiveManager.instance.getMapFromBox(
+                                HiveBoxes.USER, HiveBoxes.WALLETTYPE) ==
+                            'subwallet') {
+                          showCoreSnackBarr(
+                              context, 'Only for mainwallets in beta');
+                        } else {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SettingsScreen(),
+                            ),
+                          );
+                        }
+                      },
+                      child: SvgPicture.asset(
+                          'assets/wallet_page/wheel_empty.svg'))
                 ]),
           ),
         ],

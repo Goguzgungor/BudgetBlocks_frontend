@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/app_light_theme.dart';
-import 'package:solsafe/app/theme/colors.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/app_light_theme.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
 
 const font_family = 'RedHatDisplay';
 const font_family_montserrat = 'Montserrat';
@@ -16,12 +16,22 @@ TextStyle walletCardTitle = TextStyle(
     fontSize: 14.horizontalScale,
     fontWeight: FontWeight.w400,
     color: Colors.white.withOpacity(0.7));
-TextStyle walletButtonStyle =  TextStyle(
+TextStyle walletButtonStyle = TextStyle(
     fontSize: 16.horizontalScale,
     fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: font_family);
-TextStyle textFieldStyle =  TextStyle(
+TextStyle dropDownStyle = TextStyle(
+    fontSize: 18.horizontalScale,
+    fontWeight: FontWeight.w500,
+    color: AppColor.background,
+    fontFamily: font_family);
+TextStyle middleBarStyle = TextStyle(
+    fontSize: 18.horizontalScale,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontFamily: font_family);
+TextStyle textFieldStyle = TextStyle(
     fontSize: 18.horizontalScale,
     fontWeight: FontWeight.w400,
     color: AppColor.background,

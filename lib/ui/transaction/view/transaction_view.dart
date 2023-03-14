@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/bottom_bar.dart';
-import 'package:solsafe/app/components/core/bottombar_icon.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/core_text_field.dart';
-import 'package:solsafe/app/components/core/dark_button.dart';
-import 'package:solsafe/app/components/core/dark_button_small.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/core/red_button_small.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/components/main_wallet/main_wallet_button.dart';
-import 'package:solsafe/app/components/transaction/tran_text_block.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/window_local.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/check/check.dart';
-import 'package:solsafe/ui/subwallet/subwallet_screen.dart';
-import 'package:solsafe/ui/transaction/controller/transaction_controller.dart';
+import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
+import 'package:budgetBlocks/app/components/core/bottombar_icon.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/core_text_field.dart';
+import 'package:budgetBlocks/app/components/core/dark_button.dart';
+import 'package:budgetBlocks/app/components/core/dark_button_small.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/core/red_button_small.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/components/main_wallet/main_wallet_button.dart';
+import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/check/check.dart';
+import 'package:budgetBlocks/ui/confirm_transaction/confirm_transaction_screen.dart';
+import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
+import 'package:budgetBlocks/ui/transaction/controller/transaction_controller.dart';
 
 class TransactionView extends StatelessWidget {
-  const TransactionView({super.key});
+  final dynamic balance;
+
+  const TransactionView({super.key, required this.balance});
 
   @override
   Widget build(BuildContext context) {
@@ -79,19 +84,24 @@ class TransactionView extends StatelessWidget {
                       height: 10.verticalScale,
                     ),
                     CoreTextField(
-                        controller: controller.amaountCont, hintText: 'Amonut'),
+                        controller: controller.amaountCont, hintText: 'Amount'),
                     SizedBox(
                       height: 10.verticalScale,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DarkCoreText(text: 'Available: 10.0xw5 SOL'),
+                        DarkCoreText(text: 'Available: $balance SOL'),
                         SizedBox(
                           width: 50.horizontalScale,
                         ),
-                        DarkButtonSmall(
-                          text: 'Max',
+                        InkWell(
+                          onTap: () {
+                            controller.amaountCont.text = balance.toString();
+                          },
+                          child: const DarkButtonSmall(
+                            text: 'Max',
+                          ),
                         )
                       ],
                     ),
@@ -101,63 +111,24 @@ class TransactionView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DarkButton(text: 'Cancel'),
+                        InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: DarkButton(text: 'Cancel')),
                         SizedBox(
                           width: 15.horizontalScale,
                         ),
                         InkWell(
                             onTap: () async {
-                              LocalStorage localStorage = LocalStorage();
-                              String walletType =
-                                  await localStorage.getId('wallet_type') ??
-                                      '-1';
-                              if (walletType == 'mainwallet') {
-                                int mainwallet_id = int.parse(
-                                    await localStorage.getId('mainwallet_id') ??
-                                        '');
-                                dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
-                                  "mainwallet_id": mainwallet_id
-                                };
-
-                                Map<String, dynamic> signature =
-                                    await HttpManager.instance.postJsonRequest(
-                                        '/user/mainwallet/transaction/send',
-                                        requestObj);
-
-                                print(signature['data'].toString());
-                                
-                                print('DONEEEEEEEE');
-                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                         CheckView(text: signature['data']['transaction_id'].toString())));
-                              }
-
-                              if (walletType == 'subwallet') {
-                                int user_id = int.parse(
-                                    await localStorage.getId('user_id') ??
-                                        '-1');
-                                dynamic requestObj = {
-                                  "reciver_public_key":
-                                      controller.reciverText.text,
-                                  "balance": controller.amaountCont.text,
-                                  "user_id": user_id
-                                };
-
-                                Map<String, dynamic> signature =
-                                    await HttpManager.instance.postJsonRequest(
-                                        '/user/create/pendingtransaction',
-                                        requestObj);
-
-                                print(signature['data'].toString());
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SubWalletScreen()));
-                              }
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      ConfirmTransactionScreen(
+                                        balance: controller.amaountCont.text,
+                                        publicKey: controller.reciverText.text,
+                                      )));
                             },
-                            child: RedButtonSmall(text: 'Send')),
+                            child: RedButtonSmall(text: 'Next')),
                       ],
                     ),
                   ],

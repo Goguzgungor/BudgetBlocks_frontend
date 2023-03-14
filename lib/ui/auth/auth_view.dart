@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/core/core_text_field.dart';
-import 'package:solsafe/app/components/core/dark_core_text.dart';
-import 'package:solsafe/app/components/core/headline_text.dart';
-import 'package:solsafe/app/components/home/red_button.dart';
-import 'package:solsafe/app/constants/app_constant.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/hive_boxes.dart';
-import 'package:solsafe/app/memory/hive_manager.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
-import 'package:solsafe/ui/auth/controller/auth_controller.dart';
-import 'package:solsafe/ui/home/controller/home_controller.dart';
-import 'package:solsafe/ui/import_wallet/controller/import_wallet_controller.dart';
-import 'package:solsafe/ui/landing/landing_screen.dart';
-import 'package:solsafe/ui/login/screen/login_screen.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/core/core_text_field.dart';
+import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
+import 'package:budgetBlocks/app/components/core/headline_text.dart';
+import 'package:budgetBlocks/app/components/home/red_button.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budgetBlocks/ui/auth/controller/auth_controller.dart';
+import 'package:budgetBlocks/ui/home/controller/home_controller.dart';
+import 'package:budgetBlocks/ui/import_wallet/controller/import_wallet_controller.dart';
+import 'package:budgetBlocks/ui/landing/landing_screen.dart';
+import 'package:budgetBlocks/ui/login/screen/login_screen.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({super.key});
@@ -84,11 +84,13 @@ class AuthView extends StatelessWidget {
                       };
                       Map<String, dynamic> resp = await HttpManager.instance
                           .postJsonRequest('/user/create', userData);
-                      print(resp);
+                      int user_id = resp['data']['id'];
+                      HiveManager.instance
+                          .addMapToBox(HiveBoxes.USER, 'user_id', user_id);
+                      int user1 = HiveManager.instance
+                          .getMapFromBox(HiveBoxes.USER, 'user_id');
 
-                      String user_id = resp['data']['id'].toString();
-                      print(user_id);
-                      await controller.saveLocal(users_id, user_id);
+                      print(user1);
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const LandingScreen(),

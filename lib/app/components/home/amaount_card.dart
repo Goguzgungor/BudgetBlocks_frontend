@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:solsafe/app/base/base.state.dart';
-import 'package:solsafe/app/components/home/card_button.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/navigation/size_config.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/base/base.state.dart';
+import 'package:budgetBlocks/app/components/home/card_button.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/navigation/size_config.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 
 import '../../constants/padding_and_radius_size.dart';
 

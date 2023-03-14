@@ -1,23 +1,27 @@
+import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:solsafe/app/components/core/core_app_barr.dart';
-import 'package:solsafe/app/components/create_wallet/create_wallet_grid.dart';
-import 'package:solsafe/app/components/transaction/tran_text_block.dart';
-import 'package:solsafe/app/constants/app_constant.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/memory/window_local.dart';
-import 'package:solsafe/app/network/http_manager.dart';
-import 'package:solsafe/app/theme/colors.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
+import 'package:budgetBlocks/app/components/create_wallet/create_wallet_grid.dart';
+import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
+
+import '../../app/components/core/core_scafflod_messenger.dart';
 
 class SubWalletListView extends StatelessWidget {
   const SubWalletListView({super.key});
 
   Future<Map<String, dynamic>> getList() async {
-    LocalStorage localStorage = LocalStorage();
-    int user_id = int.parse(await localStorage.getId(users_id) ?? '-1');
+    int user_id = HiveManager.instance.getMapFromBox(HiveBoxes.USER, users_id);
     return await HttpManager.instance
         .getJsonRequest('/user/subwallet/list/${user_id}');
   }
@@ -25,7 +29,7 @@ class SubWalletListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CoreAppBarr(context, text: "Subwallet List"),
+        appBar: LoggedCoreAppBarr(context),
         backgroundColor: AppColor.background,
         body: SizedBox(
           width: 390..horizontalScale,
@@ -56,7 +60,7 @@ class SubWalletListView extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 220.horizontalScale,
-                          height: 310.verticalScale,
+                          height: 630.verticalScale,
                           child: Center(
                             child: ListView.builder(
                               itemCount: subWalletList.length,
@@ -70,11 +74,20 @@ class SubWalletListView extends StatelessWidget {
                                         fontSize: 16.horizontalScale,
                                         color: AppColor.white),
                                   ),
-                                  subtitle: Text(
-                                    subWalletList[index]["public_key"],
-                                    style: middleBarstyle.copyWith(
-                                        fontSize: 8.horizontalScale,
-                                        color: AppColor.white),
+                                  subtitle: InkWell(
+                                    onTap: () {
+                                      Clipboard.setData(ClipboardData(
+                                          text: subWalletList[index]
+                                              ["public_key"]));
+                                      showCoreSnackBarr(
+                                          context, 'Copied To Clipboard');
+                                    },
+                                    child: Text(
+                                      subWalletList[index]["public_key"],
+                                      style: middleBarstyle.copyWith(
+                                          fontSize: 8.horizontalScale,
+                                          color: AppColor.white),
+                                    ),
                                   ),
                                 );
                               },

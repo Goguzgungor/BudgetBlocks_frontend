@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:solsafe/app/extensions/widgets_scale_extension.dart';
-import 'package:solsafe/app/theme/text_style.dart';
+import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budgetBlocks/app/theme/text_style.dart';
 
 class TranTextBlock extends StatelessWidget {
   final String text;
@@ -26,7 +26,7 @@ class TranTextBlock extends StatelessWidget {
         ),
         Text(
           text,
-          style: amanountSolStyle,
+          style: amanountSolStyle.copyWith(fontWeight: FontWeight.w900),
         ),
       ],
     );

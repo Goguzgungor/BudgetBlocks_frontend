@@ -27,7 +27,7 @@ class ReceiverMiddleBarr extends StatelessWidget {
                 style: middleBarStyle.copyWith(fontWeight: FontWeight.w400),
               ),
               Text(
-                'Vienna Caffe Shop',
+                'Unknown',
                 style: middleBarStyle,
               ),
             ],

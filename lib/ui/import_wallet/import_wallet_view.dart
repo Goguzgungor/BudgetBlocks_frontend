@@ -1,4 +1,5 @@
 import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
 import 'package:budgetBlocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -32,6 +33,7 @@ class ImportWalletView extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                TranTextBlock(text: "Go Back"),
                 SizedBox(
                     height: 420.verticalScale,
                     width: 303.horizontalScale,

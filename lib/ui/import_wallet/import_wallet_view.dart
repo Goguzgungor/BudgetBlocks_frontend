@@ -1,3 +1,5 @@
+import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budgetBlocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -72,7 +74,11 @@ class ImportWalletView extends StatelessWidget {
                         }))),
                 Column(
                   children: [
-                    RedButton(text: 'Next'),
+                    InkWell(
+                        onTap: () {
+                          showCoreSnackBarr(context, comingSoon);
+                        },
+                        child: RedButton(text: 'Next')),
                     SizedBox(
                       height: 21.verticalScale,
                     ),

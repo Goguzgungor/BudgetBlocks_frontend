@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:budgetBlocks/ui/show_mnemonic/controller/show_mnemonic_controller.dart';
-import 'package:budgetBlocks/ui/show_mnemonic/view/show_mnemonic_view.dart';
-import 'package:budgetBlocks/ui/subwallet_create/controller/subwallet_create_controller.dart';
-import 'package:budgetBlocks/ui/subwallet_create/view/subwallet_create_view.dart';
-import 'package:budgetBlocks/ui/transaction/controller/transaction_controller.dart';
-import 'package:budgetBlocks/ui/transaction/view/transaction_view.dart';
-import 'package:budgetBlocks/ui/subwallet_edit/controller/subwallet_edit_controller.dart';
+import 'package:budget_blocks/ui/show_mnemonic/controller/show_mnemonic_controller.dart';
+import 'package:budget_blocks/ui/show_mnemonic/view/show_mnemonic_view.dart';
+import 'package:budget_blocks/ui/subwallet_create/controller/subwallet_create_controller.dart';
+import 'package:budget_blocks/ui/subwallet_create/view/subwallet_create_view.dart';
+import 'package:budget_blocks/ui/transaction/controller/transaction_controller.dart';
+import 'package:budget_blocks/ui/transaction/view/transaction_view.dart';
+import 'package:budget_blocks/ui/subwallet_edit/controller/subwallet_edit_controller.dart';
 
 class SubWalletCreateScreen extends StatelessWidget {
   const SubWalletCreateScreen({super.key});

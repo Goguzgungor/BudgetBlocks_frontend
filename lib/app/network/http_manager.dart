@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
 
 class HttpManager {
   static HttpManager? _instance;
@@ -53,12 +53,29 @@ class HttpManager {
       http.Response res = await http.post(Uri.parse(uri),
           body: jsonEncode(requestBody),
           headers: {'Content-Type': 'application/json'});
+      print(res.body);
+      print(res);
       var body = jsonDecode(res.body);
       if (res.statusCode == 200) {
         return {'status': true, 'data': body};
       } else {
         return {'status': false, 'message': body};
       }
+    } on HttpException catch (e) {
+      return {'status': false, 'message': e.message};
+    }
+  }
+  Future<Map<String, dynamic>> transactionPostRequest(
+      String urlPath_1, Map<String, dynamic> requestBody) async {
+    String uri = urlPath + urlPath_1;
+    debugPrint(uri);
+    try {
+      http.Response res = await http.post(Uri.parse(uri),
+          body: jsonEncode(requestBody),
+          headers: {'Content-Type': 'application/json'});
+
+  
+      return {'status': true, 'data': "success"};
     } on HttpException catch (e) {
       return {'status': false, 'message': e.message};
     }

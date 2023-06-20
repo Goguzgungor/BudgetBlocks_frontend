@@ -1,21 +1,21 @@
-import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
-import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
-import 'package:budgetBlocks/app/extensions/string_extension.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
-import 'package:budgetBlocks/app/memory/hive_manager.dart';
+import 'package:budget_blocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budget_blocks/app/components/core/dark_core_text.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/extensions/string_extension.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:budgetBlocks/app/base/base.state.dart';
-import 'package:budgetBlocks/app/constants/home/home_constant.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/theme/app_light_theme.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budget_blocks/app/base/base.state.dart';
+import 'package:budget_blocks/app/constants/home/home_constant.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/theme/app_light_theme.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
 import 'package:get/get.dart';
 
 class LoggedCoreAppBarr extends BaseStateless implements PreferredSizeWidget {
@@ -32,7 +32,6 @@ class LoggedCoreAppBarr extends BaseStateless implements PreferredSizeWidget {
     } else if (title == 'subwallet') {
       return 'Sub Wallet';
     }
-    ;
   }
 
   @override

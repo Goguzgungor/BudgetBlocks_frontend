@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
-import 'package:budgetBlocks/app/memory/hive_manager.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/create_sub_wallet/create_sub_wallet_screen.dart';
-import 'package:budgetBlocks/ui/create_wallet/create_wallet_screen.dart';
-import 'package:budgetBlocks/ui/import_wallet/screen/import_wallet_screen.dart';
-import 'package:budgetBlocks/ui/landing/controller/lading_controller.dart';
-import 'package:budgetBlocks/ui/show_mnemonic/show_mnemonic_screen.dart';
+import 'package:budget_blocks/app/components/home/red_button.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_manager.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/create_sub_wallet/create_sub_wallet_screen.dart';
+import 'package:budget_blocks/ui/create_wallet/create_wallet_screen.dart';
+import 'package:budget_blocks/ui/import_wallet/screen/import_wallet_screen.dart';
+import 'package:budget_blocks/ui/landing/controller/lading_controller.dart';
+import 'package:budget_blocks/ui/show_mnemonic/show_mnemonic_screen.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({super.key});

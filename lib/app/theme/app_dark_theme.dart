@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:budgetBlocks/app/constants/padding_and_radius_size.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/theme/app_light_theme.dart';
+import 'package:budget_blocks/app/constants/padding_and_radius_size.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/theme/app_light_theme.dart';
 
 import '../theme/colors.dart';
 

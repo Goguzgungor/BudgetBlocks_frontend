@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:budgetBlocks/ui/main_wallet/view/main_wallet_view.dart';
+import 'package:budget_blocks/ui/main_wallet/view/main_wallet_view.dart';
 
 import 'controller/main_wallet_controller.dart';
 

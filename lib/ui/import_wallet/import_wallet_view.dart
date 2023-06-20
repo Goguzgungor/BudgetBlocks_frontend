@@ -1,20 +1,20 @@
-import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
-import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budget_blocks/app/components/transaction/tran_text_block.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/headline_text.dart';
-import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/components/import_wallet/import_wallet_app_barr.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/home/controller/home_controller.dart';
-import 'package:budgetBlocks/ui/import_wallet/controller/import_wallet_controller.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/headline_text.dart';
+import 'package:budget_blocks/app/components/home/red_button.dart';
+import 'package:budget_blocks/app/components/import_wallet/import_wallet_app_barr.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/home/controller/home_controller.dart';
+import 'package:budget_blocks/ui/import_wallet/controller/import_wallet_controller.dart';
 
 class ImportWalletView extends StatelessWidget {
   const ImportWalletView({super.key});

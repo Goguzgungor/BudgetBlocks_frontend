@@ -1,4 +1,4 @@
-import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
 
 import '../navigation/size_config.dart';
 

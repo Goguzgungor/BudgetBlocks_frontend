@@ -1,17 +1,17 @@
-import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/logged_core_app_barr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/core_text_field.dart';
-import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/recieve/controller/receieve.controller.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/core_text_field.dart';
+import 'package:budget_blocks/app/components/home/red_button.dart';
+import 'package:budget_blocks/app/components/transaction/tran_text_block.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/recieve/controller/receieve.controller.dart';
 
 class ReceiveView extends StatelessWidget {
   const ReceiveView({super.key});

@@ -4,24 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/core_text_field.dart';
-import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
-import 'package:budgetBlocks/app/components/core/headline_text.dart';
-import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
-import 'package:budgetBlocks/app/memory/hive_manager.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/network/http_manager.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/auth/controller/auth_controller.dart';
-import 'package:budgetBlocks/ui/home/controller/home_controller.dart';
-import 'package:budgetBlocks/ui/import_wallet/controller/import_wallet_controller.dart';
-import 'package:budgetBlocks/ui/landing/landing_screen.dart';
-import 'package:budgetBlocks/ui/login/screen/login_screen.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/core_text_field.dart';
+import 'package:budget_blocks/app/components/core/dark_core_text.dart';
+import 'package:budget_blocks/app/components/core/headline_text.dart';
+import 'package:budget_blocks/app/components/home/red_button.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_manager.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/network/http_manager.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/auth/controller/auth_controller.dart';
+import 'package:budget_blocks/ui/home/controller/home_controller.dart';
+import 'package:budget_blocks/ui/import_wallet/controller/import_wallet_controller.dart';
+import 'package:budget_blocks/ui/landing/landing_screen.dart';
+import 'package:budget_blocks/ui/login/screen/login_screen.dart';
+import 'package:hive/hive.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({super.key});
@@ -89,6 +90,7 @@ class AuthView extends StatelessWidget {
                           .addMapToBox(HiveBoxes.USER, 'user_id', user_id);
                       int user1 = HiveManager.instance
                           .getMapFromBox(HiveBoxes.USER, 'user_id');
+                      await HiveManager.instance.addMapToBox(HiveBoxes.USER,HiveBoxes.WALLETTYPE,HiveBoxes.MAINWALLET);
 
                       print(user1);
                       Navigator.of(context).push(

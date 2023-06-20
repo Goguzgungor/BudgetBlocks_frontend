@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:budgetBlocks/app/components/core/headline_text.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budget_blocks/app/components/core/headline_text.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
 
 class SuccessText extends StatelessWidget {
   const SuccessText({

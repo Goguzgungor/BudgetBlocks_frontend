@@ -1,4 +1,4 @@
-# budgetBlocks
+# budget_blocks
 
 A new Flutter project.
 

@@ -21,5 +21,5 @@ const double designHeight = 811;
 /// Animasyonlarin Duration Süresi
 const int animationDurationMS = 400;
 
-const String urlPath = "http://agile-ridge-88137.herokuapp.com";
+const String urlPath = "https://budgettest-076cc47e545c.herokuapp.com";
 const String createPath = "/user/create";

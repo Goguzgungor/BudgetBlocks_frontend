@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
 
-import 'package:budgetBlocks/app/models/auth/auth_models.dart';
-import 'package:budgetBlocks/app/network/http_manager.dart';
+import 'package:budget_blocks/app/models/auth/auth_models.dart';
+import 'package:budget_blocks/app/network/http_manager.dart';
 
 class AuthController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();

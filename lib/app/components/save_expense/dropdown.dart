@@ -1,5 +1,5 @@
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
 List<DropdownMenuItem<Object>>? dorpDownList = [

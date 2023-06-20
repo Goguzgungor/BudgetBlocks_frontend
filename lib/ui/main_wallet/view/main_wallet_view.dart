@@ -1,24 +1,24 @@
-import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
-import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budget_blocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
-import 'package:budgetBlocks/app/components/main_wallet/main_wallet_button.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
-import 'package:budgetBlocks/app/memory/hive_manager.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/network/http_manager.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/main_wallet/controller/main_wallet_controller.dart';
-import 'package:budgetBlocks/ui/qr_reader/qr_reader.dart';
-import 'package:budgetBlocks/ui/recieve/receive.screen.dart';
-import 'package:budgetBlocks/ui/transaction/transaction_screen.dart';
+import 'package:budget_blocks/app/components/core/bottom_bar.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/dark_core_text.dart';
+import 'package:budget_blocks/app/components/main_wallet/main_wallet_button.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_manager.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/network/http_manager.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/main_wallet/controller/main_wallet_controller.dart';
+import 'package:budget_blocks/ui/qr_reader/qr_reader.dart';
+import 'package:budget_blocks/ui/recieve/receive.screen.dart';
+import 'package:budget_blocks/ui/transaction/transaction_screen.dart';
 
 class MainWalletView extends StatelessWidget {
   const MainWalletView({super.key});
@@ -132,8 +132,9 @@ class MainWalletView extends StatelessWidget {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                         TransactionScreen(balance: balance,),
+                                    builder: (context) => TransactionScreen(
+                                      balance: balance,
+                                    ),
                                   ),
                                 );
                                 print(balance);

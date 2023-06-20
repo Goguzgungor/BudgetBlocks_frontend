@@ -1,21 +1,21 @@
-import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
-import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
-import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
-import 'package:budgetBlocks/ui/save_expense/save_expense_screen.dart';
+import 'package:budget_blocks/app/components/core/bottom_bar.dart';
+import 'package:budget_blocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budget_blocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/ui/save_expense/save_expense_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/components/core/big_dark_button.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
-import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/components/success_transaction/success_text.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
-import 'package:budgetBlocks/ui/save_expense/view/save_expense_view.dart';
-import 'package:budgetBlocks/ui/success_transaction/controller/success_transaction_controller.dart';
+import 'package:budget_blocks/app/components/core/big_dark_button.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/dark_core_text.dart';
+import 'package:budget_blocks/app/components/home/red_button.dart';
+import 'package:budget_blocks/app/components/success_transaction/success_text.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budget_blocks/ui/save_expense/view/save_expense_view.dart';
+import 'package:budget_blocks/ui/success_transaction/controller/success_transaction_controller.dart';
 import '../../../app/components/confirn_transaction/receiver_middle_barr.dart';
 
 class SuccessTransactionView extends StatelessWidget {

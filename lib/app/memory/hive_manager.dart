@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
 
 class HiveManager {
   static HiveManager? _instance;

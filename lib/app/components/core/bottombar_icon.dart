@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BottomBarrIcon extends StatelessWidget {

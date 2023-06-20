@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/theme/app_light_theme.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/theme/app_light_theme.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
 
 const font_family = 'RedHatDisplay';
 const font_family_montserrat = 'Montserrat';

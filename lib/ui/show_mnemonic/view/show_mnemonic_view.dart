@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/headline_text.dart';
-import 'package:budgetBlocks/app/components/create_wallet/create_wallet_grid.dart';
-import 'package:budgetBlocks/app/components/home/red_button.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
-import 'package:budgetBlocks/app/memory/hive_manager.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/network/http_manager.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
-import 'package:budgetBlocks/ui/show_mnemonic/controller/show_mnemonic_controller.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/headline_text.dart';
+import 'package:budget_blocks/app/components/create_wallet/create_wallet_grid.dart';
+import 'package:budget_blocks/app/components/home/red_button.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_manager.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/network/http_manager.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budget_blocks/ui/show_mnemonic/controller/show_mnemonic_controller.dart';
 
 class ShowMnemonicView extends StatelessWidget {
   final int user_id;

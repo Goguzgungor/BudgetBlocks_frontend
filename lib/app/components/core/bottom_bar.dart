@@ -1,23 +1,19 @@
-import 'package:budgetBlocks/app/components/core/core_scafflod_messenger.dart';
-import 'package:budgetBlocks/app/constants/app_constant.dart';
-import 'package:budgetBlocks/app/memory/hive_boxes.dart';
-import 'package:budgetBlocks/app/memory/hive_manager.dart';
-import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
-import 'package:budgetBlocks/ui/subwallet/subwallet_screen.dart';
+import 'package:budget_blocks/app/components/core/core_scafflod_messenger.dart';
+import 'package:budget_blocks/app/constants/app_constant.dart';
+import 'package:budget_blocks/app/memory/hive_boxes.dart';
+import 'package:budget_blocks/app/memory/hive_manager.dart';
+import 'package:budget_blocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budget_blocks/ui/subwallet/subwallet_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:budgetBlocks/app/components/core/bottombar_icon.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/ui/landing/landing_screen.dart';
-import 'package:budgetBlocks/ui/settings/settings_screen.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/ui/settings/settings_screen.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomBottomBar extends StatelessWidget {
   CustomBottomBar({super.key});
   String walletType =
-      HiveManager.instance.getMapFromBox(HiveBoxes.USER, HiveBoxes.WALLETTYPE);
+      HiveManager.instance.getMapFromBox(HiveBoxes.USER, HiveBoxes.WALLETTYPE) ?? "Main Wallet";
   @override
   Widget build(BuildContext context) {
     return SizedBox(

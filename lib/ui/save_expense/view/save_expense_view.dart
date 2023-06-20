@@ -1,20 +1,20 @@
-import 'package:budgetBlocks/app/components/core/bottom_bar.dart';
-import 'package:budgetBlocks/app/components/core/logged_core_app_barr.dart';
-import 'package:budgetBlocks/app/components/save_expense/dropdown.dart';
-import 'package:budgetBlocks/ui/save_expense/controller/save_expense_controller.dart';
+import 'package:budget_blocks/app/components/core/bottom_bar.dart';
+import 'package:budget_blocks/app/components/core/logged_core_app_barr.dart';
+import 'package:budget_blocks/app/components/save_expense/dropdown.dart';
+import 'package:budget_blocks/ui/save_expense/controller/save_expense_controller.dart';
 import 'package:flutter/material.dart';
 
-import 'package:budgetBlocks/app/components/confirn_transaction/sol_middle_barr.dart';
-import 'package:budgetBlocks/app/components/core/core_app_barr.dart';
-import 'package:budgetBlocks/app/components/core/dark_button.dart';
-import 'package:budgetBlocks/app/components/core/dark_core_text.dart';
-import 'package:budgetBlocks/app/components/core/red_button_small.dart';
-import 'package:budgetBlocks/app/components/transaction/tran_text_block.dart';
-import 'package:budgetBlocks/app/extensions/widgets_scale_extension.dart';
-import 'package:budgetBlocks/app/navigation/size_config.dart';
-import 'package:budgetBlocks/app/theme/colors.dart';
-import 'package:budgetBlocks/app/theme/text_style.dart';
-import 'package:budgetBlocks/ui/main_wallet/main_wallet_screen.dart';
+import 'package:budget_blocks/app/components/confirn_transaction/sol_middle_barr.dart';
+import 'package:budget_blocks/app/components/core/core_app_barr.dart';
+import 'package:budget_blocks/app/components/core/dark_button.dart';
+import 'package:budget_blocks/app/components/core/dark_core_text.dart';
+import 'package:budget_blocks/app/components/core/red_button_small.dart';
+import 'package:budget_blocks/app/components/transaction/tran_text_block.dart';
+import 'package:budget_blocks/app/extensions/widgets_scale_extension.dart';
+import 'package:budget_blocks/app/navigation/size_config.dart';
+import 'package:budget_blocks/app/theme/colors.dart';
+import 'package:budget_blocks/app/theme/text_style.dart';
+import 'package:budget_blocks/ui/main_wallet/main_wallet_screen.dart';
 import 'package:get/get.dart';
 import '../../../../app/components/confirn_transaction/receiver_middle_barr.dart';
 
